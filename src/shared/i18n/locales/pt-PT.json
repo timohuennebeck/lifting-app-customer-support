@@ -92,11 +92,15 @@
     "screenshot": "Captura de ecrã {{index}}",
     "uploading": "Ainda a carregar",
     "closeHint": "Clique ou prima Esc para fechar",
-    "loadFailed": "Não foi possível carregar a conversa."
+    "loadFailed": "Não foi possível carregar a conversa.",
+    "translatedFrom": "Traduzido de: {{language}}",
+    "translated": "Traduzido",
+    "showOriginal": "Ver original",
+    "showTranslation": "Ver tradução"
   },
   "composer": {
-    "placeholder": "Responder a {{name}} · em {{language}}",
-    "placeholderNoLanguage": "Responder a {{name}}",
+    "placeholder": "Responder a {{name}}",
+    "placeholderTranslated": "Responder a {{name}} · traduzido para {{language}}",
     "send": "Enviar",
     "sending": "A enviar…",
     "tooLong_one": "{{count}} carácter a mais",

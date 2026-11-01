@@ -29,6 +29,8 @@ const ticket = (patch: Partial<InboxRow>): InboxRow => ({
   user_activity_at: '2026-11-01T08:00:00Z',
   read_at: null,
   unread: true,
+  first_message_id: null,
+  last_message_id: null,
   ...patch,
 });
 
@@ -133,6 +135,7 @@ describe('buildTimeline', () => {
     author: 'user',
     content: id,
     attachments: [],
+    language: null,
     created_at: at,
   });
   const event = (id: string, at: string): EventRow => ({

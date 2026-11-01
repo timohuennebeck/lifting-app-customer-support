@@ -23,7 +23,9 @@ covers what it does, setup and deployment.
 - Reads go through TanStack Query with keys from `ticketKeys` / `customerKeys`; long lists through
   `fetchAll` (the API cuts responses at 1000 rows). Realtime only invalidates queries.
 - Users read team replies and status lines in the app, in their language: a status version is a
-  plain "1.4.3" that the app words itself; replies are written in the customer's app language.
+  plain "1.4.3" that the app words itself; replies go through `send-team-reply`, which translates
+  them into the customer's app language. Messages show in the desk's language from
+  `ticket_message_translations` (`useTranslations`); missing ones are asked for once per session.
 
 ## i18n
 

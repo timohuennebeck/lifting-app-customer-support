@@ -91,11 +91,15 @@
     "screenshot": "스크린샷 {{index}}",
     "uploading": "업로드 중",
     "closeHint": "클릭하거나 Esc를 눌러 닫기",
-    "loadFailed": "대화를 불러오지 못했습니다."
+    "loadFailed": "대화를 불러오지 못했습니다.",
+    "translatedFrom": "{{language}}에서 번역됨",
+    "translated": "번역됨",
+    "showOriginal": "원문 보기",
+    "showTranslation": "번역 보기"
   },
   "composer": {
-    "placeholder": "{{name}}님에게 답장 · {{language}}",
-    "placeholderNoLanguage": "{{name}}님에게 답장",
+    "placeholder": "{{name}}님에게 답장",
+    "placeholderTranslated": "{{name}}님에게 답장 · {{language}}로 번역됨",
     "send": "보내기",
     "sending": "보내는 중…",
     "tooLong_other": "{{count}}자 초과"

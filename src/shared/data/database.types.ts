@@ -31,6 +31,9 @@ export type InboxRow = {
   user_activity_at: string | null;
   read_at: string | null;
   unread: boolean | null;
+  /** Its first and last message, whose translations stand in for subject and preview. */
+  first_message_id: string | null;
+  last_message_id: string | null;
 };
 
 export type MessageRow = {
@@ -41,6 +44,18 @@ export type MessageRow = {
   content: string;
   /** Storage paths in the ticket-attachments bucket. */
   attachments: string[];
+  /** The language it was written in, once the server detected it (e.g. "ko"). */
+  language: string | null;
+  created_at: string;
+};
+
+export type TranslationRow = {
+  id: string;
+  message_id: string;
+  user_id: string;
+  /** One of the app's languages. */
+  language: string;
+  content: string;
   created_at: string;
 };
 
@@ -97,6 +112,12 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<EventRow>;
+        Relationships: [];
+      };
+      ticket_message_translations: {
+        Row: TranslationRow;
+        Insert: never;
+        Update: never;
         Relationships: [];
       };
       support_ticket_reads: {

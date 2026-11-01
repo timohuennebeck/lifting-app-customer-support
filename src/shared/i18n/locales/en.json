@@ -92,11 +92,15 @@
     "screenshot": "Screenshot {{index}}",
     "uploading": "Still uploading",
     "closeHint": "Click or press Esc to close",
-    "loadFailed": "The conversation couldn't load."
+    "loadFailed": "The conversation couldn't load.",
+    "translatedFrom": "Translated from: {{language}}",
+    "translated": "Translated",
+    "showOriginal": "Show original",
+    "showTranslation": "Show translation"
   },
   "composer": {
-    "placeholder": "Reply to {{name}} · in {{language}}",
-    "placeholderNoLanguage": "Reply to {{name}}",
+    "placeholder": "Reply to {{name}}",
+    "placeholderTranslated": "Reply to {{name}} · translated into {{language}}",
     "send": "Send",
     "sending": "Sending…",
     "tooLong_one": "{{count}} character too many",

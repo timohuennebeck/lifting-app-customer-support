@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { customerKeys } from '../data/customers';
 import { supabase } from '../data/supabase';
 import { ticketKeys } from '../data/tickets';
+import { translationKeys } from '../data/translations';
 
 interface TicketChange {
   ticket_id?: string;
@@ -43,6 +44,17 @@ export function useDeskRealtime() {
         'postgres_changes',
         { event: 'INSERT', schema: 'public', table: 'ticket_events' },
         refreshThread,
+      )
+      // The server noted a message's language.
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'ticket_messages' },
+        refreshThread,
+      )
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'ticket_message_translations' },
+        () => void queryClient.invalidateQueries({ queryKey: translationKeys.all }),
       )
       .subscribe();
     return () => {

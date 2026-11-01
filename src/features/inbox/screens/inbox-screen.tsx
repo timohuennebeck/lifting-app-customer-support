@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useCustomers } from '@/shared/data/customers';
 import type { InboxRow, TicketStatus } from '@/shared/data/database.types';
 import { useInbox } from '@/shared/data/tickets';
+import { useTranslations } from '@/shared/data/translations';
 import { usePageVisible } from '@/shared/hooks/use-page-visible';
 import { displayName, initials } from '@/shared/lib/people';
 import { toast } from '@/shared/lib/toast';
@@ -21,6 +22,7 @@ import {
   visibleTickets,
 } from '../lib/filter';
 import { filterOf, type InboxSearch } from '../lib/search';
+import { localizeTickets } from '../lib/translations';
 import { shownStatus } from '../lib/status';
 
 const route = getRouteApi('/_desk/inbox');
@@ -39,7 +41,7 @@ function shortcutsBlocked(event: KeyboardEvent) {
  * list, E resolves and moves on, R jumps to the reply box.
  */
 export function InboxScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const search = route.useSearch();
   const navigate = route.useNavigate();
   const filter = useMemo(
@@ -53,7 +55,12 @@ export function InboxScreen() {
   const visibleNow = usePageVisible();
   const composerRef = useRef<HTMLTextAreaElement>(null);
 
-  const tickets = useMemo(() => inbox.data ?? [], [inbox.data]);
+  const { data: translations } = useTranslations(i18n.language);
+  // Subjects and previews in the desk's language where the server translated them.
+  const tickets = useMemo(
+    () => localizeTickets(inbox.data ?? [], translations),
+    [inbox.data, translations],
+  );
   const visible = useMemo(
     () => visibleTickets(tickets, customers, filter),
     [tickets, customers, filter],

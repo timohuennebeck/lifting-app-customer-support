@@ -2,7 +2,6 @@ import type { Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { InboxRow } from '@/shared/data/database.types';
-import { languageName } from '@/shared/lib/format';
 
 import { Composer } from './composer';
 import { StatusPicker } from './status-picker';
@@ -43,7 +42,7 @@ export function Conversation({ ticket, name, initials, language, composerRef }: 
         key={`composer-${ticket.id}`}
         ticket={ticket}
         name={i18n.language === 'ko' ? name : (name.split(' ')[0] ?? name)}
-        language={language ? languageName(language, i18n.language) : null}
+        language={language}
         inputRef={composerRef}
       />
     </section>

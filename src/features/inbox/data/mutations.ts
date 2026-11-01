@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InboxRow, TicketStatus } from '@/shared/data/database.types';
 import { assertOk, supabase } from '@/shared/data/supabase';
 import { ticketKeys } from '@/shared/data/tickets';
+import { translationKeys } from '@/shared/data/translations';
 
 /** The most a message may hold (the database's ticket_messages check). */
 export const MESSAGE_MAX = 5000;
@@ -21,25 +22,23 @@ function patchInbox(
 }
 
 /**
- * A reply from the team. It carries the ticket owner's user_id, so it syncs to their phone,
- * where the app shows it as from the Loqqa team.
+ * A reply from the team, through the send-team-reply function: it translates the reply into the
+ * user's app language (from whatever language it is written in) and saves both together, so the
+ * user's app shows it in their language right away, as from the Loqqa team.
  */
 export function useSendReply() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ ticket, content }: { ticket: InboxRow; content: string }) => {
-      assertOk(
-        await supabase.from('ticket_messages').insert({
-          user_id: ticket.user_id,
-          ticket_id: ticket.id,
-          author: 'team',
-          content,
-        }),
-      );
+      const { error } = await supabase.functions.invoke('send-team-reply', {
+        body: { ticket_id: ticket.id, content },
+      });
+      if (error) throw error;
     },
     onSettled: (_data, _error, { ticket }) => {
       void queryClient.invalidateQueries({ queryKey: ticketKeys.thread(ticket.id) });
       void queryClient.invalidateQueries({ queryKey: ticketKeys.inbox });
+      void queryClient.invalidateQueries({ queryKey: translationKeys.all });
     },
   });
 }

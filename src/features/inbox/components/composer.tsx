@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import type { InboxRow } from '@/shared/data/database.types';
 import { cn } from '@/shared/lib/cn';
+import { languageName } from '@/shared/lib/format';
+import { sameLanguage } from '@/shared/lib/language';
 import { toast } from '@/shared/lib/toast';
 
 import { MESSAGE_MAX, useSendReply } from '../data/mutations';
@@ -12,7 +14,7 @@ const IS_MAC = /Mac|iPhone|iPad/.test(navigator.userAgent);
 
 export interface ComposerProps {
   ticket: InboxRow;
-  /** The customer's name and app language, for the placeholder. */
+  /** The customer's name, and their app language (en, de, …) the reply is translated into. */
   name: string;
   language: string | null;
   inputRef?: Ref<HTMLTextAreaElement>;
@@ -20,8 +22,13 @@ export interface ComposerProps {
 
 /** The reply box: ⌘↵ (Ctrl+↵) or the button sends; the draft survives switching tickets. */
 export function Composer({ ticket, name, language, inputRef }: ComposerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const send = useSendReply();
+  // Named when the reply reaches the customer in another language than the desk's.
+  const translatedInto =
+    language && !sameLanguage(language, i18n.language)
+      ? languageName(language, i18n.language)
+      : null;
   const [text, setText] = useState(() => getDraft(ticket.id));
   const content = text.trim();
   const over = text.length - MESSAGE_MAX;
@@ -60,11 +67,11 @@ export function Composer({ ticket, name, language, inputRef }: ComposerProps) {
             }
           }}
           placeholder={
-            language
-              ? t('composer.placeholder', { name, language })
-              : t('composer.placeholderNoLanguage', { name })
+            translatedInto
+              ? t('composer.placeholderTranslated', { name, language: translatedInto })
+              : t('composer.placeholder', { name })
           }
-          aria-label={t('composer.placeholderNoLanguage', { name })}
+          aria-label={t('composer.placeholder', { name })}
           rows={3}
           className="[field-sizing:content] max-h-[40vh] min-h-[87px] resize-none bg-transparent px-4 pt-3.5 pb-2.5 text-[14px] leading-normal text-ink outline-none placeholder:text-muted"
         />

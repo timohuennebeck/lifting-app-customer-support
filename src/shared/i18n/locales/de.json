@@ -92,11 +92,15 @@
     "screenshot": "Screenshot {{index}}",
     "uploading": "Wird noch hochgeladen",
     "closeHint": "Klicken oder Esc zum Schließen",
-    "loadFailed": "Der Verlauf konnte nicht geladen werden."
+    "loadFailed": "Der Verlauf konnte nicht geladen werden.",
+    "translatedFrom": "Übersetzt aus: {{language}}",
+    "translated": "Übersetzt",
+    "showOriginal": "Original anzeigen",
+    "showTranslation": "Übersetzung anzeigen"
   },
   "composer": {
-    "placeholder": "Antwort an {{name}} · auf {{language}}",
-    "placeholderNoLanguage": "Antwort an {{name}}",
+    "placeholder": "Antwort an {{name}}",
+    "placeholderTranslated": "Antwort an {{name}} · wird auf {{language}} übersetzt",
     "send": "Senden",
     "sending": "Wird gesendet …",
     "tooLong_one": "{{count}} Zeichen zu viel",

@@ -25,12 +25,19 @@ lifting-app):
 
 - read every ticket, message, status change and screenshot (`support_inbox` view,
   `support_customers()` for what only auth knows: email, sign-in method, activity)
-- write replies (`author = 'team'`) and status changes, and what it has read
-  (`support_ticket_reads`)
+- write status changes and what it has read (`support_ticket_reads`); replies go through the
+  `send-team-reply` function
 - never change or delete what a user wrote
 
 Any other account that signs in here is signed out again, and would see nothing anyway. Changes
 arrive live through Supabase Realtime.
+
+**Translations:** every message shows in the desk's language, with "Übersetzt aus: Koreanisch ·
+Original anzeigen" to switch to the original. Users' messages arrive translated into the team's
+language; for another desk language the desk asks the `translate-ticket-messages` function for
+what is missing. Replies go through `send-team-reply`, which translates them into the customer's
+app language before saving, whatever language they are written in (the reply box names it). Both
+functions and their setup live in lifting-app (its README, "Translations").
 
 **Stack:** Vite, React 19, TypeScript, Tailwind CSS 4, TanStack Router (file routes in
 `src/routes`) and TanStack Query, supabase-js, i18next, Radix UI (menus, popover, dialog).
