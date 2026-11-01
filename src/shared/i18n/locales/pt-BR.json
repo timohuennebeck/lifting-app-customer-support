@@ -1,0 +1,123 @@
+{
+  "app": { "name": "Loqqa Support", "logo": "L" },
+  "nav": { "inbox": "Caixa de entrada", "customers": "Clientes" },
+  "language": { "title": "Idioma" },
+  "account": { "name": "Equipe Loqqa", "initials": "EL", "signOut": "Sair" },
+  "login": {
+    "title": "Suporte ao cliente",
+    "subtitle": "Entre com a conta de suporte.",
+    "email": "E-mail",
+    "password": "Senha",
+    "submit": "Entrar",
+    "signingIn": "Entrando…",
+    "fillBoth": "Digite seu e-mail e senha.",
+    "invalid": "E-mail ou senha incorretos.",
+    "denied": "Esta conta não tem acesso ao suporte.",
+    "note": "Somente para a equipe de suporte da Loqqa."
+  },
+  "inbox": {
+    "title": "Caixa de entrada",
+    "openCount_one": "{{count}} aberto",
+    "openCount_other": "{{count}} abertos",
+    "search": "Buscar nome, e-mail, chamado",
+    "empty": "Nenhum chamado nesta visualização.",
+    "loading": "Carregando…",
+    "loadFailed": "Não foi possível carregar a caixa de entrada.",
+    "retry": "Tentar de novo",
+    "noTicket": "Selecione um chamado à esquerda.",
+    "kinds": { "all": "Todos", "bug": "Erros", "idea": "Ideias" },
+    "shortcuts": { "navigate": "J / K navegar", "resolve": "E resolver", "reply": "R responder" }
+  },
+  "status": {
+    "open": "Aberto",
+    "planned": "Planejado",
+    "resolved": "Resolvido",
+    "closed": "Fechado"
+  },
+  "statusShown": {
+    "open": "Aberto",
+    "planned": "Planejado",
+    "fixed": "Corrigido",
+    "shipped": "Implementado",
+    "closed": "Fechado"
+  },
+  "statusHint": {
+    "open": "Novo ou em andamento",
+    "planned": "Vem em uma atualização",
+    "resolved": "Concluído – o usuário vê “{{label}}”",
+    "closed": "Fechado, sem ação"
+  },
+  "statusPicker": {
+    "version": "Versão (opcional)",
+    "versionPlaceholder": "ex.: 1.4.3",
+    "preview": "No app:",
+    "apply": "Definir status",
+    "back": "Voltar"
+  },
+  "kind": { "bug": "Erro", "idea": "Ideia" },
+  "importance": "Importância {{value}}/5",
+  "platform": { "ios": "iOS", "android": "Android" },
+  "thread": {
+    "team": "Equipe Loqqa",
+    "statusLine": "Status: {{status}}",
+    "comingIn": "Chega na atualização {{version}}",
+    "liveIn": "Disponível na atualização {{version}}",
+    "reopened": "{{name}} reabriu o chamado",
+    "screenshot": "Captura de tela {{index}}",
+    "uploading": "Ainda enviando",
+    "closeHint": "Clique ou pressione Esc para fechar",
+    "loadFailed": "Não foi possível carregar a conversa."
+  },
+  "composer": {
+    "placeholder": "Responder {{name}} · em {{language}}",
+    "placeholderNoLanguage": "Responder {{name}}",
+    "send": "Enviar",
+    "sending": "Enviando…",
+    "tooLong_one": "{{count}} caractere a mais",
+    "tooLong_other": "{{count}} caracteres a mais"
+  },
+  "toast": {
+    "sent": "Resposta enviada",
+    "status": "Status: {{status}}",
+    "copied": "Copiado",
+    "userIdCopied": "ID do usuário copiado",
+    "error": "Algo deu errado. Tente de novo."
+  },
+  "customer": {
+    "copyEmail": "Copiar e-mail",
+    "account": "Conta",
+    "signIn": "Login",
+    "userId": "ID do usuário",
+    "signedUp": "Cadastro",
+    "lastActive": "Última atividade",
+    "language": "Idioma",
+    "device": "Dispositivo",
+    "model": "Dispositivo",
+    "system": "Sistema",
+    "appVersion": "Versão do app",
+    "noDevice": "Não enviado – versão antiga do app",
+    "history": "Chamados anteriores",
+    "firstRequest": "Primeiro chamado",
+    "unknown": "Desconhecido",
+    "providers": {
+      "apple": "Apple",
+      "google": "Google",
+      "email": "E-mail",
+      "anonymous": "Convidado"
+    }
+  },
+  "customers": {
+    "title": "Clientes",
+    "count_one": "{{count}} cliente",
+    "count_other": "{{count}} clientes",
+    "search": "Nome ou e-mail",
+    "columns": {
+      "name": "Nome",
+      "email": "E-mail",
+      "device": "Dispositivo",
+      "requests": "Chamados",
+      "lastContact": "Último contato"
+    },
+    "empty": "Nenhum cliente encontrado."
+  }
+}

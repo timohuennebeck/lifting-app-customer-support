@@ -1,0 +1,123 @@
+{
+  "app": { "name": "Loqqa Support", "logo": "L" },
+  "nav": { "inbox": "Caixa de entrada", "customers": "Clientes" },
+  "language": { "title": "Idioma" },
+  "account": { "name": "Equipa Loqqa", "initials": "EL", "signOut": "Terminar sessão" },
+  "login": {
+    "title": "Apoio ao cliente",
+    "subtitle": "Inicie sessão com a conta de apoio.",
+    "email": "E-mail",
+    "password": "Palavra-passe",
+    "submit": "Iniciar sessão",
+    "signingIn": "A iniciar sessão…",
+    "fillBoth": "Introduza o e-mail e a palavra-passe.",
+    "invalid": "E-mail ou palavra-passe incorretos.",
+    "denied": "Esta conta não tem acesso ao apoio ao cliente.",
+    "note": "Apenas para a equipa de apoio da Loqqa."
+  },
+  "inbox": {
+    "title": "Caixa de entrada",
+    "openCount_one": "{{count}} aberto",
+    "openCount_other": "{{count}} abertos",
+    "search": "Pesquisar nome, e-mail, pedido",
+    "empty": "Não há pedidos nesta vista.",
+    "loading": "A carregar…",
+    "loadFailed": "Não foi possível carregar a caixa de entrada.",
+    "retry": "Tentar novamente",
+    "noTicket": "Selecione um pedido à esquerda.",
+    "kinds": { "all": "Todos", "bug": "Erros", "idea": "Ideias" },
+    "shortcuts": { "navigate": "J / K navegar", "resolve": "E resolver", "reply": "R responder" }
+  },
+  "status": {
+    "open": "Aberto",
+    "planned": "Planeado",
+    "resolved": "Resolvido",
+    "closed": "Fechado"
+  },
+  "statusShown": {
+    "open": "Aberto",
+    "planned": "Planeado",
+    "fixed": "Corrigido",
+    "shipped": "Implementado",
+    "closed": "Fechado"
+  },
+  "statusHint": {
+    "open": "Novo ou em curso",
+    "planned": "Chega numa atualização",
+    "resolved": "Concluído – o utilizador vê «{{label}}»",
+    "closed": "Fechado, sem ação"
+  },
+  "statusPicker": {
+    "version": "Versão (opcional)",
+    "versionPlaceholder": "p. ex. 1.4.3",
+    "preview": "Na app:",
+    "apply": "Definir estado",
+    "back": "Voltar"
+  },
+  "kind": { "bug": "Erro", "idea": "Ideia" },
+  "importance": "Importância {{value}}/5",
+  "platform": { "ios": "iOS", "android": "Android" },
+  "thread": {
+    "team": "Equipa Loqqa",
+    "statusLine": "Estado: {{status}}",
+    "comingIn": "Chega na atualização {{version}}",
+    "liveIn": "Disponível na atualização {{version}}",
+    "reopened": "{{name}} reabriu o pedido",
+    "screenshot": "Captura de ecrã {{index}}",
+    "uploading": "Ainda a carregar",
+    "closeHint": "Clique ou prima Esc para fechar",
+    "loadFailed": "Não foi possível carregar a conversa."
+  },
+  "composer": {
+    "placeholder": "Responder a {{name}} · em {{language}}",
+    "placeholderNoLanguage": "Responder a {{name}}",
+    "send": "Enviar",
+    "sending": "A enviar…",
+    "tooLong_one": "{{count}} carácter a mais",
+    "tooLong_other": "{{count}} caracteres a mais"
+  },
+  "toast": {
+    "sent": "Resposta enviada",
+    "status": "Estado: {{status}}",
+    "copied": "Copiado",
+    "userIdCopied": "ID de utilizador copiado",
+    "error": "Algo correu mal. Tente novamente."
+  },
+  "customer": {
+    "copyEmail": "Copiar e-mail",
+    "account": "Conta",
+    "signIn": "Início de sessão",
+    "userId": "ID de utilizador",
+    "signedUp": "Registo",
+    "lastActive": "Última atividade",
+    "language": "Idioma",
+    "device": "Dispositivo",
+    "model": "Dispositivo",
+    "system": "Sistema",
+    "appVersion": "Versão da app",
+    "noDevice": "Não enviado – versão antiga da app",
+    "history": "Pedidos anteriores",
+    "firstRequest": "Primeiro pedido",
+    "unknown": "Desconhecido",
+    "providers": {
+      "apple": "Apple",
+      "google": "Google",
+      "email": "E-mail",
+      "anonymous": "Convidado"
+    }
+  },
+  "customers": {
+    "title": "Clientes",
+    "count_one": "{{count}} cliente",
+    "count_other": "{{count}} clientes",
+    "search": "Nome ou e-mail",
+    "columns": {
+      "name": "Nome",
+      "email": "E-mail",
+      "device": "Dispositivo",
+      "requests": "Pedidos",
+      "lastContact": "Último contacto"
+    },
+    "empty": "Nenhum cliente encontrado."
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "app": { "name": "Loqqa Support", "logo": "L" },
+  "nav": { "inbox": "Inbox", "customers": "Customers" },
+  "language": { "title": "Language" },
+  "account": { "name": "Loqqa Team", "initials": "LT", "signOut": "Sign out" },
+  "login": {
+    "title": "Customer support",
+    "subtitle": "Sign in with the support account.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "signingIn": "Signing in…",
+    "fillBoth": "Enter your email and password.",
+    "invalid": "Email or password is wrong.",
+    "denied": "This account has no access to the support desk.",
+    "note": "Only for the Loqqa support team."
+  },
+  "inbox": {
+    "title": "Inbox",
+    "openCount_one": "{{count}} open",
+    "openCount_other": "{{count}} open",
+    "search": "Search name, email, ticket",
+    "empty": "No requests in this view.",
+    "loading": "Loading…",
+    "loadFailed": "The inbox couldn't load.",
+    "retry": "Try again",
+    "noTicket": "Select a request on the left.",
+    "kinds": { "all": "All", "bug": "Bugs", "idea": "Ideas" },
+    "shortcuts": { "navigate": "J / K navigate", "resolve": "E resolve", "reply": "R reply" }
+  },
+  "status": { "open": "Open", "planned": "Planned", "resolved": "Resolved", "closed": "Closed" },
+  "statusShown": {
+    "open": "Open",
+    "planned": "Planned",
+    "fixed": "Fixed",
+    "shipped": "Shipped",
+    "closed": "Closed"
+  },
+  "statusHint": {
+    "open": "New or in progress",
+    "planned": "Coming in an update",
+    "resolved": "Done – the user sees “{{label}}”",
+    "closed": "Closed, no action"
+  },
+  "statusPicker": {
+    "version": "Version (optional)",
+    "versionPlaceholder": "e.g. 1.4.3",
+    "preview": "In the app:",
+    "apply": "Set status",
+    "back": "Back"
+  },
+  "kind": { "bug": "Bug", "idea": "Idea" },
+  "importance": "Importance {{value}}/5",
+  "platform": { "ios": "iOS", "android": "Android" },
+  "thread": {
+    "team": "Loqqa Team",
+    "statusLine": "Status: {{status}}",
+    "comingIn": "Coming in update {{version}}",
+    "liveIn": "Live in update {{version}}",
+    "reopened": "{{name}} reopened the request",
+    "screenshot": "Screenshot {{index}}",
+    "uploading": "Still uploading",
+    "closeHint": "Click or press Esc to close",
+    "loadFailed": "The conversation couldn't load."
+  },
+  "composer": {
+    "placeholder": "Reply to {{name}} · in {{language}}",
+    "placeholderNoLanguage": "Reply to {{name}}",
+    "send": "Send",
+    "sending": "Sending…",
+    "tooLong_one": "{{count}} character too many",
+    "tooLong_other": "{{count}} characters too many"
+  },
+  "toast": {
+    "sent": "Reply sent",
+    "status": "Status: {{status}}",
+    "copied": "Copied",
+    "userIdCopied": "User ID copied",
+    "error": "That didn't work. Try again."
+  },
+  "customer": {
+    "copyEmail": "Copy email",
+    "account": "Account",
+    "signIn": "Sign-in",
+    "userId": "User ID",
+    "signedUp": "Signed up",
+    "lastActive": "Last active",
+    "language": "Language",
+    "device": "Device",
+    "model": "Device",
+    "system": "System",
+    "appVersion": "App version",
+    "noDevice": "Not sent – older app version",
+    "history": "Previous requests",
+    "firstRequest": "First request",
+    "unknown": "Unknown",
+    "providers": { "apple": "Apple", "google": "Google", "email": "Email", "anonymous": "Guest" }
+  },
+  "customers": {
+    "title": "Customers",
+    "count_one": "{{count}} customer",
+    "count_other": "{{count}} customers",
+    "search": "Name or email",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "device": "Device",
+      "requests": "Requests",
+      "lastContact": "Last contact"
+    },
+    "empty": "No customer found."
+  }
+}
