@@ -1,5 +1,4 @@
-import './inter.css';
-import '@fontsource-variable/jetbrains-mono';
+import './fonts.css';
 import '@fontsource-variable/noto-sans-kr';
 import './global.css';
 import './shared/i18n';

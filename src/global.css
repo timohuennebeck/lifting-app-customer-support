@@ -3,7 +3,7 @@
 /* The design's palette: a warm grey canvas with white panels and near-black ink. */
 @theme {
   --font-sans: 'Inter', 'Noto Sans KR Variable', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --color-canvas: #ecece8;
   --color-panel: #ffffff;

@@ -21,7 +21,9 @@ export function StatusIcon({ status, size = 12, inChip = false, className }: Sta
       height={size}
       viewBox="0 0 14 14"
       aria-hidden
-      className={cn('shrink-0', status === 'closed' && !inChip && 'text-closed', className)}
+      className={cn('shrink-0', className)}
+      // Closed is always light grey outside chips, whatever colour the caller gives.
+      style={status === 'closed' && !inChip ? { color: 'var(--color-closed)' } : undefined}
     >
       {status === 'open' || status === 'planned' ? (
         <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.7" fill="none" />
