@@ -66,16 +66,18 @@ export function Composer({ ticket, name, language, inputRef }: ComposerProps) {
           }
           aria-label={t('composer.placeholderNoLanguage', { name })}
           rows={3}
-          className="[field-sizing:content] max-h-[40vh] min-h-[84px] resize-none bg-transparent px-4 pt-3.5 pb-2.5 text-sm leading-normal text-ink outline-none placeholder:text-muted"
+          className="[field-sizing:content] max-h-[40vh] min-h-[87px] resize-none bg-transparent px-4 pt-3.5 pb-2.5 text-[14px] leading-normal text-ink outline-none placeholder:text-muted"
         />
         <div className="flex items-center gap-1.5 px-3 pb-3">
           {over > 0 ? (
-            <span className="pl-1 text-xs font-semibold text-ink">
+            <span className="pl-1 text-[12px] font-semibold text-ink">
               {t('composer.tooLong', { count: over })}
             </span>
           ) : null}
           <div className="flex-1" />
-          <span className="text-xs whitespace-nowrap text-subtle">{IS_MAC ? '⌘ ↵' : 'Ctrl ↵'}</span>
+          <span className="text-[12px] whitespace-nowrap text-subtle">
+            {IS_MAC ? '⌘ ↵' : 'Ctrl ↵'}
+          </span>
           <button
             type="button"
             onClick={submit}

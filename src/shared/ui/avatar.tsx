@@ -2,8 +2,8 @@ import { cn } from '../lib/cn';
 
 const SIZES = {
   sm: 'size-[30px] text-[11px]',
-  md: 'size-[34px] text-xs',
-  lg: 'size-14 text-lg',
+  md: 'size-[34px] text-[12px]',
+  lg: 'size-14 text-[18px]',
 } as const;
 
 export interface AvatarProps {

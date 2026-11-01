@@ -1,8 +1,20 @@
 {
-  "app": { "name": "Loqqa Support", "logo": "L" },
-  "nav": { "inbox": "Posteingang", "customers": "Kunden" },
-  "language": { "title": "Sprache" },
-  "account": { "name": "Loqqa-Team", "initials": "LT", "signOut": "Abmelden" },
+  "app": {
+    "name": "Loqqa Support",
+    "logo": "L"
+  },
+  "nav": {
+    "inbox": "Posteingang",
+    "customers": "Kunden"
+  },
+  "language": {
+    "title": "Sprache"
+  },
+  "account": {
+    "name": "Loqqa-Team",
+    "initials": "LT",
+    "signOut": "Abmelden"
+  },
   "login": {
     "title": "Kundensupport",
     "subtitle": "Melde dich mit dem Support-Konto an.",
@@ -25,8 +37,16 @@
     "loadFailed": "Der Posteingang konnte nicht geladen werden.",
     "retry": "Noch mal versuchen",
     "noTicket": "Wähle links eine Anfrage aus.",
-    "kinds": { "all": "Alle", "bug": "Fehler", "idea": "Ideen" },
-    "shortcuts": { "navigate": "J / K wechseln", "resolve": "E gelöst", "reply": "R antworten" }
+    "kinds": {
+      "all": "Alle",
+      "bug": "Fehler",
+      "idea": "Ideen"
+    },
+    "shortcuts": {
+      "navigate": "J / K wechseln",
+      "resolve": "E gelöst",
+      "reply": "R antworten"
+    }
   },
   "status": {
     "open": "Offen",
@@ -54,9 +74,15 @@
     "apply": "Status setzen",
     "back": "Zurück"
   },
-  "kind": { "bug": "Fehler", "idea": "Idee" },
+  "kind": {
+    "bug": "Fehler",
+    "idea": "Idee"
+  },
   "importance": "Wichtigkeit {{value}}/5",
-  "platform": { "ios": "iOS", "android": "Android" },
+  "platform": {
+    "ios": "iOS",
+    "android": "Android"
+  },
   "thread": {
     "team": "Loqqa-Team",
     "statusLine": "Status: {{status}}",
@@ -90,16 +116,18 @@
     "userId": "Nutzer-ID",
     "signedUp": "Registriert",
     "lastActive": "Zuletzt aktiv",
-    "language": "Sprache",
     "device": "Gerät",
     "model": "Gerät",
     "system": "System",
     "appVersion": "App-Version",
     "noDevice": "Nicht übermittelt – ältere App-Version",
-    "history": "Frühere Anfragen",
-    "firstRequest": "Erste Anfrage",
     "unknown": "Unbekannt",
-    "providers": { "apple": "Apple", "google": "Google", "email": "E-Mail", "anonymous": "Gast" }
+    "providers": {
+      "apple": "Mit Apple",
+      "google": "Mit Google",
+      "email": "E-Mail",
+      "anonymous": "Gast"
+    }
   },
   "customers": {
     "title": "Kunden",

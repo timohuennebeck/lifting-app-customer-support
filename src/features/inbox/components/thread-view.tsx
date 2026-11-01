@@ -21,7 +21,7 @@ function Message({ message, sender }: { message: MessageRow; sender: Sender }) {
   const time = formatMessageTime(message.created_at, i18n.language);
   const fromTeam = message.author === 'team';
   const meta = (
-    <div className="text-xs text-muted">
+    <div className="text-[12px] text-muted">
       <span className="font-semibold text-ink">{fromTeam ? t('thread.team') : sender.name}</span>
       {` · ${time}`}
     </div>
@@ -30,8 +30,8 @@ function Message({ message, sender }: { message: MessageRow; sender: Sender }) {
     <div
       className={
         fromTeam
-          ? 'rounded-[18px] bg-ink px-4 py-3 text-sm leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap text-white'
-          : 'rounded-[18px] bg-field px-4 py-3 text-sm leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap'
+          ? 'rounded-[18px] bg-ink px-4 py-3 text-[14px] leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap text-white'
+          : 'rounded-[18px] bg-field px-4 py-3 text-[14px] leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap'
       }
     >
       {message.content}
@@ -88,7 +88,7 @@ function EventLine({
     text = detail ? `${line} · ${detail}` : line;
   }
   return (
-    <div className="flex items-center justify-center gap-2 text-xs text-muted">
+    <div className="flex items-center justify-center gap-2 text-[12px] text-muted">
       <StatusIcon status={status} className="text-muted" />
       <span>
         <span className="font-semibold text-ink-3">{text}</span>

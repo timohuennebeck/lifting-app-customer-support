@@ -72,7 +72,7 @@ export function TicketList({
                 aria-pressed={active}
                 onClick={() => onStatus(status)}
                 className={cn(
-                  'flex h-[30px] items-center gap-1.5 rounded-full px-3 text-xs font-semibold whitespace-nowrap',
+                  'flex h-[30px] items-center gap-1.5 rounded-full px-3 text-[12px] font-semibold whitespace-nowrap',
                   active
                     ? 'bg-ink text-white [--status-cutout:var(--color-ink)]'
                     : 'bg-field text-ink-3 [--status-cutout:var(--color-field)] hover:bg-chip',
@@ -84,22 +84,23 @@ export function TicketList({
               </button>
             );
           })}
-        </div>
-        <div className="flex gap-1" role="group">
-          {KINDS.map((kind) => (
-            <button
-              key={kind}
-              type="button"
-              aria-pressed={filter.kind === kind}
-              onClick={() => onKind(kind)}
-              className={cn(
-                'h-7 rounded-full px-2.5 text-xs font-semibold',
-                filter.kind === kind ? 'bg-chip text-ink' : 'text-muted hover:text-ink',
-              )}
-            >
-              {t(`inbox.kinds.${kind}`)}
-            </button>
-          ))}
+          {/* The type filter takes the chip rows' last line, as tall as a chip. */}
+          <div className="flex basis-full gap-1">
+            {KINDS.map((kind) => (
+              <button
+                key={kind}
+                type="button"
+                aria-pressed={filter.kind === kind}
+                onClick={() => onKind(kind)}
+                className={cn(
+                  'h-[30px] rounded-full px-2.5 text-[12px] font-semibold',
+                  filter.kind === kind ? 'bg-chip text-ink' : 'text-muted hover:text-ink',
+                )}
+              >
+                {t(`inbox.kinds.${kind}`)}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
       <div className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto px-2.5 pb-4">
@@ -112,7 +113,7 @@ export function TicketList({
             <button
               type="button"
               onClick={onRetry}
-              className="h-[30px] rounded-full bg-chip px-3 text-xs font-semibold text-ink hover:bg-chip-hover"
+              className="h-[30px] rounded-full bg-chip px-3 text-[12px] font-semibold text-ink hover:bg-chip-hover"
             >
               {t('inbox.retry')}
             </button>

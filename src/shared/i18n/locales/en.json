@@ -1,8 +1,20 @@
 {
-  "app": { "name": "Loqqa Support", "logo": "L" },
-  "nav": { "inbox": "Inbox", "customers": "Customers" },
-  "language": { "title": "Language" },
-  "account": { "name": "Loqqa Team", "initials": "LT", "signOut": "Sign out" },
+  "app": {
+    "name": "Loqqa Support",
+    "logo": "L"
+  },
+  "nav": {
+    "inbox": "Inbox",
+    "customers": "Customers"
+  },
+  "language": {
+    "title": "Language"
+  },
+  "account": {
+    "name": "Loqqa Team",
+    "initials": "LT",
+    "signOut": "Sign out"
+  },
   "login": {
     "title": "Customer support",
     "subtitle": "Sign in with the support account.",
@@ -25,10 +37,23 @@
     "loadFailed": "The inbox couldn't load.",
     "retry": "Try again",
     "noTicket": "Select a request on the left.",
-    "kinds": { "all": "All", "bug": "Bugs", "idea": "Ideas" },
-    "shortcuts": { "navigate": "J / K navigate", "resolve": "E resolve", "reply": "R reply" }
+    "kinds": {
+      "all": "All",
+      "bug": "Bugs",
+      "idea": "Ideas"
+    },
+    "shortcuts": {
+      "navigate": "J / K navigate",
+      "resolve": "E resolve",
+      "reply": "R reply"
+    }
   },
-  "status": { "open": "Open", "planned": "Planned", "resolved": "Resolved", "closed": "Closed" },
+  "status": {
+    "open": "Open",
+    "planned": "Planned",
+    "resolved": "Resolved",
+    "closed": "Closed"
+  },
   "statusShown": {
     "open": "Open",
     "planned": "Planned",
@@ -49,9 +74,15 @@
     "apply": "Set status",
     "back": "Back"
   },
-  "kind": { "bug": "Bug", "idea": "Idea" },
+  "kind": {
+    "bug": "Bug",
+    "idea": "Idea"
+  },
   "importance": "Importance {{value}}/5",
-  "platform": { "ios": "iOS", "android": "Android" },
+  "platform": {
+    "ios": "iOS",
+    "android": "Android"
+  },
   "thread": {
     "team": "Loqqa Team",
     "statusLine": "Status: {{status}}",
@@ -85,16 +116,18 @@
     "userId": "User ID",
     "signedUp": "Signed up",
     "lastActive": "Last active",
-    "language": "Language",
     "device": "Device",
     "model": "Device",
     "system": "System",
     "appVersion": "App version",
     "noDevice": "Not sent – older app version",
-    "history": "Previous requests",
-    "firstRequest": "First request",
     "unknown": "Unknown",
-    "providers": { "apple": "Apple", "google": "Google", "email": "Email", "anonymous": "Guest" }
+    "providers": {
+      "apple": "Apple",
+      "google": "Google",
+      "email": "Email",
+      "anonymous": "Guest"
+    }
   },
   "customers": {
     "title": "Customers",

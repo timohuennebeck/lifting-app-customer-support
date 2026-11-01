@@ -12,8 +12,8 @@ import { matchesCustomer, summarize } from '../lib/summaries';
 
 const route = getRouteApi('/_desk/customers');
 
-const GRID =
-  'grid grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1.6fr)_90px_140px] items-center gap-4';
+// The design's columns; headers sit at the top of their row, cells in the middle of theirs.
+const GRID = 'grid grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1.6fr)_90px_110px] gap-4';
 
 /** Everyone who wrote in, with their device, number of requests and last contact. */
 export function CustomersScreen() {
@@ -56,7 +56,7 @@ export function CustomersScreen() {
           }
           placeholder={t('customers.search')}
           aria-label={t('customers.search')}
-          className="h-[38px] w-[280px] rounded-xl bg-field px-3.5 text-[13px] text-ink outline-none placeholder:text-muted focus:shadow-[inset_0_0_0_1.5px_var(--color-ring)]"
+          className="h-[38px] w-[308px] rounded-xl bg-field px-3.5 text-[13px] text-ink outline-none placeholder:text-muted focus:shadow-[inset_0_0_0_1.5px_var(--color-ring)]"
         />
       </header>
       <div
@@ -89,7 +89,7 @@ export function CustomersScreen() {
                 },
               })
             }
-            className={`${GRID} rounded-[14px] px-6 py-3 text-left text-[13px] outline-none hover:bg-hover focus-visible:ring-2 focus-visible:ring-ink`}
+            className={`${GRID} items-center rounded-[14px] px-6 py-3 text-left text-[13px] outline-none hover:bg-hover focus-visible:ring-2 focus-visible:ring-ink`}
           >
             <span className="flex min-w-0 items-center gap-2.5">
               <Avatar initials={initials(row.name)} size="sm" />

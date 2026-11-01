@@ -82,14 +82,14 @@ export function StatusPicker({ ticket }: { ticket: InboxRow }) {
         </span>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content align="end" sideOffset={8} className={cn(menuSurface, 'w-[280px]')}>
+        <Popover.Content align="end" sideOffset={8} className={cn(menuSurface, 'w-[272px]')}>
           {chosen ? (
             <form onSubmit={submit} className="flex flex-col gap-3 p-2">
               <div className="flex items-center gap-2 text-[13px] font-semibold">
                 <StatusIcon status={chosen} size={14} className="text-ink" />
                 {label(chosen)}
               </div>
-              <label className="flex flex-col gap-1.5 text-xs text-muted">
+              <label className="flex flex-col gap-1.5 text-[12px] text-muted">
                 {t('statusPicker.version')}
                 <input
                   autoFocus
@@ -101,7 +101,7 @@ export function StatusPicker({ ticket }: { ticket: InboxRow }) {
                 />
               </label>
               {preview ? (
-                <p className="text-xs leading-[1.4] text-muted">
+                <p className="text-[12px] leading-[1.4] text-muted">
                   {t('statusPicker.preview')} <span className="text-ink">{preview}</span>
                 </p>
               ) : null}
@@ -139,7 +139,7 @@ export function StatusPicker({ ticket }: { ticket: InboxRow }) {
                     </span>
                     <span className="flex flex-col gap-0.5">
                       <span className="text-[13px] font-semibold">{label(status)}</span>
-                      <span className="text-xs leading-[1.35] text-muted">
+                      <span className="text-[12px] leading-[1.35] text-muted">
                         {status === 'resolved'
                           ? t('statusHint.resolved', { label: label(status) })
                           : t(`statusHint.${status}`)}

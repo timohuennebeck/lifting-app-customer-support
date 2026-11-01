@@ -59,7 +59,7 @@ function Lightbox({ urls, index, onIndex }: LightboxProps) {
               className="max-h-[85vh] max-w-[90vw] rounded-panel bg-hover object-contain"
             />
           ) : null}
-          <p className="text-[13px] text-white/85">{t('thread.closeHint')}</p>
+          <p className="text-[13px] text-muted">{t('thread.closeHint')}</p>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
@@ -92,7 +92,7 @@ export function Attachments({
           return (
             <div
               key={path}
-              className="flex h-[34px] items-center gap-2 rounded-full bg-hover px-3 text-xs font-semibold text-muted shadow-[inset_0_0_0_1px_var(--color-avatar)]"
+              className="flex h-[34px] items-center gap-2 rounded-full bg-hover px-3 text-[12px] font-semibold text-muted shadow-[inset_0_0_0_1px_var(--color-avatar)]"
             >
               <ImageIcon />
               {`${name} · ${t('thread.uploading')}`}

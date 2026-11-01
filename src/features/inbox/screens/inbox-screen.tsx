@@ -76,15 +76,6 @@ export function InboxScreen() {
     if (ticket) update({ ticket: ticket.number }, true);
   };
 
-  /** Opens a ticket in its own status view (from the customer's earlier requests). */
-  const openElsewhere = (ticket: InboxRow) =>
-    void navigate({
-      search: {
-        status: ticket.status === 'open' ? undefined : ticket.status,
-        ticket: ticket.number,
-      },
-    });
-
   const resolveAndNext = () => {
     if (!selected || selected.status === 'resolved') return;
     const next = visible.includes(selected) ? nextAfterLeaving(visible, selected.id) : visible[0];
@@ -136,11 +127,6 @@ export function InboxScreen() {
   const unknown = t('customer.unknown');
   const customer = selected ? customers?.get(selected.user_id) : undefined;
   const name = displayName(customer, unknown);
-  const history = selected
-    ? tickets
-        .filter((ticket) => ticket.user_id === selected.user_id && ticket.id !== selected.id)
-        .sort((a, b) => b.created_at.localeCompare(a.created_at))
-    : [];
 
   return (
     <>
@@ -176,8 +162,6 @@ export function InboxScreen() {
             customer={customer}
             name={name}
             initials={initials(name)}
-            history={history}
-            onOpen={openElsewhere}
           />
         </>
       ) : (

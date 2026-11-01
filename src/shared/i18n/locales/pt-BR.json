@@ -1,8 +1,20 @@
 {
-  "app": { "name": "Loqqa Support", "logo": "L" },
-  "nav": { "inbox": "Caixa de entrada", "customers": "Clientes" },
-  "language": { "title": "Idioma" },
-  "account": { "name": "Equipe Loqqa", "initials": "EL", "signOut": "Sair" },
+  "app": {
+    "name": "Loqqa Support",
+    "logo": "L"
+  },
+  "nav": {
+    "inbox": "Caixa de entrada",
+    "customers": "Clientes"
+  },
+  "language": {
+    "title": "Idioma"
+  },
+  "account": {
+    "name": "Equipe Loqqa",
+    "initials": "EL",
+    "signOut": "Sair"
+  },
   "login": {
     "title": "Suporte ao cliente",
     "subtitle": "Entre com a conta de suporte.",
@@ -25,8 +37,16 @@
     "loadFailed": "Não foi possível carregar a caixa de entrada.",
     "retry": "Tentar de novo",
     "noTicket": "Selecione um chamado à esquerda.",
-    "kinds": { "all": "Todos", "bug": "Erros", "idea": "Ideias" },
-    "shortcuts": { "navigate": "J / K navegar", "resolve": "E resolver", "reply": "R responder" }
+    "kinds": {
+      "all": "Todos",
+      "bug": "Erros",
+      "idea": "Ideias"
+    },
+    "shortcuts": {
+      "navigate": "J / K navegar",
+      "resolve": "E resolver",
+      "reply": "R responder"
+    }
   },
   "status": {
     "open": "Aberto",
@@ -54,9 +74,15 @@
     "apply": "Definir status",
     "back": "Voltar"
   },
-  "kind": { "bug": "Erro", "idea": "Ideia" },
+  "kind": {
+    "bug": "Erro",
+    "idea": "Ideia"
+  },
   "importance": "Importância {{value}}/5",
-  "platform": { "ios": "iOS", "android": "Android" },
+  "platform": {
+    "ios": "iOS",
+    "android": "Android"
+  },
   "thread": {
     "team": "Equipe Loqqa",
     "statusLine": "Status: {{status}}",
@@ -90,14 +116,11 @@
     "userId": "ID do usuário",
     "signedUp": "Cadastro",
     "lastActive": "Última atividade",
-    "language": "Idioma",
     "device": "Dispositivo",
     "model": "Dispositivo",
     "system": "Sistema",
     "appVersion": "Versão do app",
     "noDevice": "Não enviado – versão antiga do app",
-    "history": "Chamados anteriores",
-    "firstRequest": "Primeiro chamado",
     "unknown": "Desconhecido",
     "providers": {
       "apple": "Apple",

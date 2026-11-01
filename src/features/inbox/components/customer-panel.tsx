@@ -2,11 +2,9 @@ import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { CustomerRow, InboxRow } from '@/shared/data/database.types';
-import { formatDate, formatRelative, languageName } from '@/shared/lib/format';
+import { formatDate } from '@/shared/lib/format';
 import { copyText } from '@/shared/lib/toast';
 import { Avatar } from '@/shared/ui/avatar';
-
-import { shownStatus } from '../lib/status';
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -33,20 +31,10 @@ export interface CustomerPanelProps {
   customer: CustomerRow | undefined;
   name: string;
   initials: string;
-  /** The customer's other tickets, newest first. */
-  history: readonly InboxRow[];
-  onOpen: (ticket: InboxRow) => void;
 }
 
-/** The right column: who wrote, their account, the phone the ticket came from, earlier requests. */
-export function CustomerPanel({
-  ticket,
-  customer,
-  name,
-  initials,
-  history,
-  onOpen,
-}: CustomerPanelProps) {
+/** The right column: who wrote, their account, and the phone the ticket came from. */
+export function CustomerPanel({ ticket, customer, name, initials }: CustomerPanelProps) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language;
   const failed = t('toast.error');
@@ -60,7 +48,7 @@ export function CustomerPanel({
   const hasDevice = !!(ticket.device_model || system || ticket.app_version);
 
   return (
-    <aside className="flex w-[280px] shrink-0 flex-col gap-[26px] overflow-y-auto rounded-panel bg-panel px-[22px] py-6">
+    <aside className="flex w-[324px] shrink-0 flex-col gap-[26px] overflow-y-auto rounded-panel bg-panel px-[22px] py-6">
       <div className="flex flex-col items-start gap-3">
         <Avatar initials={initials} size="lg" />
         <div className="flex min-w-0 flex-col gap-[3px]">
@@ -73,7 +61,7 @@ export function CustomerPanel({
           <button
             type="button"
             onClick={() => void copyText(customer.email ?? '', t('toast.copied'), failed)}
-            className="flex h-[30px] items-center rounded-full bg-chip px-3 text-xs font-semibold hover:bg-chip-hover"
+            className="flex h-[30px] items-center rounded-full bg-chip px-3 text-[12px] font-semibold hover:bg-chip-hover"
           >
             {t('customer.copyEmail')}
           </button>
@@ -89,7 +77,7 @@ export function CustomerPanel({
             type="button"
             title={ticket.user_id}
             onClick={() => void copyText(ticket.user_id, t('toast.userIdCopied'), failed)}
-            className="font-mono text-xs font-semibold hover:underline"
+            className="font-mono font-semibold hover:underline"
           >
             {`${ticket.user_id.slice(0, 8)}…`}
           </button>
@@ -98,10 +86,7 @@ export function CustomerPanel({
           {customer ? formatDate(customer.signed_up_at, locale) : '—'}
         </Row>
         <Row label={t('customer.lastActive')}>
-          {customer?.last_active_at ? formatRelative(customer.last_active_at, locale) : '—'}
-        </Row>
-        <Row label={t('customer.language')}>
-          {customer?.language ? languageName(customer.language, locale) : '—'}
+          {customer?.last_active_at ? formatDate(customer.last_active_at, locale) : '—'}
         </Row>
       </Section>
 
@@ -114,31 +99,6 @@ export function CustomerPanel({
           </>
         ) : (
           <p className="text-[13px] text-muted">{t('customer.noDevice')}</p>
-        )}
-      </Section>
-
-      <Section title={t('customer.history')}>
-        {history.length ? (
-          <ul className="-mx-2.5 flex flex-col gap-0.5">
-            {history.map((other) => (
-              <li key={other.id}>
-                <button
-                  type="button"
-                  onClick={() => onOpen(other)}
-                  className="flex w-full flex-col gap-0.5 rounded-[10px] px-2.5 py-2 text-left hover:bg-field"
-                >
-                  <span className="w-full truncate text-[13px] font-semibold">{other.subject}</span>
-                  <span className="text-xs text-muted">
-                    {`#${other.number} · ${formatDate(other.created_at, locale)} · ${t(
-                      `statusShown.${shownStatus(other.kind, other.status)}`,
-                    )}`}
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-[13px] text-muted">{t('customer.firstRequest')}</p>
         )}
       </Section>
     </aside>

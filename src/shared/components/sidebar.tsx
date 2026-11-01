@@ -77,7 +77,7 @@ function NavLink({ to, label, badge, children }: NavLinkProps) {
     >
       {children}
       {badge ? (
-        <span className="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-ink px-1 text-[10px] font-bold text-white ring-2 ring-canvas">
+        <span className="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-ink px-1 text-[10px] font-bold text-white">
           {badge > 99 ? '99+' : badge}
         </span>
       ) : null}
@@ -96,7 +96,7 @@ function AccountMenu() {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
         title={t('account.name')}
-        className="flex size-9 items-center justify-center rounded-full bg-chip-hover text-xs font-semibold outline-none hover:bg-line-2 focus-visible:ring-2 focus-visible:ring-ink"
+        className="flex size-9 items-center justify-center rounded-full bg-chip-hover text-[12px] font-semibold outline-none hover:bg-line-2 focus-visible:ring-2 focus-visible:ring-ink"
       >
         {t('account.initials')}
       </DropdownMenu.Trigger>
@@ -105,7 +105,7 @@ function AccountMenu() {
           side="right"
           align="end"
           sideOffset={12}
-          className={cn(menuSurface, 'w-[220px]')}
+          className={cn(menuSurface, 'w-[232px]')}
         >
           <div className="px-2.5 pt-2 pb-2.5 text-[13px] font-semibold">{t('account.name')}</div>
           <DropdownMenu.Item className={menuItem} onSelect={() => void leave()}>
@@ -127,7 +127,7 @@ export function Sidebar() {
     <nav className="flex w-[68px] shrink-0 flex-col items-center gap-2.5 py-[18px]">
       <div
         aria-label={t('app.name')}
-        className="mb-3.5 flex size-[38px] items-center justify-center rounded-xl bg-ink text-lg font-bold text-white"
+        className="mb-3.5 flex size-[38px] items-center justify-center rounded-xl bg-ink text-[18px] font-bold text-white"
       >
         {t('app.logo')}
       </div>

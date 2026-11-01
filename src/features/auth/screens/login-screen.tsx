@@ -11,7 +11,7 @@ const route = getRouteApi('/login');
 type Problem = 'fillBoth' | Exclude<SignInResult, 'ok'>;
 
 const field =
-  'h-12 rounded-[14px] bg-field px-4 text-sm text-ink outline-none placeholder:text-muted focus:shadow-[inset_0_0_0_1.5px_var(--color-ink)]';
+  'h-12 rounded-[14px] bg-field px-4 text-[14px] text-ink outline-none placeholder:text-muted focus:shadow-[inset_0_0_0_1.5px_var(--color-ink)]';
 
 /** Sign-in for the support account, with the language switch below the card. */
 export function LoginScreen() {
@@ -58,12 +58,12 @@ export function LoginScreen() {
         noValidate
         className="flex w-[400px] max-w-full shrink-0 flex-col items-center gap-[18px] rounded-[28px] bg-panel px-8 pt-8 pb-[26px] text-center"
       >
-        <div className="flex size-[52px] items-center justify-center rounded-2xl bg-ink text-2xl font-bold text-white">
+        <div className="flex size-[52px] items-center justify-center rounded-2xl bg-ink text-[24px] font-bold text-white">
           {t('app.logo')}
         </div>
         <div className="flex flex-col gap-2">
           <h1 className="text-[26px] font-semibold tracking-[-0.01em]">{t('login.title')}</h1>
-          <p className="text-sm leading-[1.45] text-pretty text-muted">{t('login.subtitle')}</p>
+          <p className="text-[14px] leading-[1.45] text-pretty text-muted">{t('login.subtitle')}</p>
         </div>
         <div className="flex w-full flex-col gap-2.5">
           <input
@@ -92,7 +92,7 @@ export function LoginScreen() {
             className={field}
           />
           {message ? (
-            <p role="alert" className="pl-1 text-left text-xs font-semibold text-ink">
+            <p role="alert" className="pl-1 text-left text-[12px] font-semibold text-ink">
               {message}
             </p>
           ) : null}
@@ -107,7 +107,7 @@ export function LoginScreen() {
             {busy ? t('login.signingIn') : t('login.submit')}
           </button>
         </div>
-        <p className="text-xs text-subtle">{t('login.note')}</p>
+        <p className="text-[12px] text-subtle">{t('login.note')}</p>
       </form>
       <div
         className="flex gap-1 rounded-full bg-chip-hover p-1"

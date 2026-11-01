@@ -39,7 +39,7 @@ export function LanguageMenu() {
           side="right"
           align="end"
           sideOffset={12}
-          className={cn(menuSurface, 'w-[220px]')}
+          className={cn(menuSurface, 'w-[232px]')}
         >
           <DropdownMenu.RadioGroup
             value={current.code}

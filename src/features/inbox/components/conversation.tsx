@@ -42,7 +42,7 @@ export function Conversation({ ticket, name, initials, language, composerRef }: 
       <Composer
         key={`composer-${ticket.id}`}
         ticket={ticket}
-        name={name}
+        name={i18n.language === 'ko' ? name : (name.split(' ')[0] ?? name)}
         language={language ? languageName(language, i18n.language) : null}
         inputRef={composerRef}
       />

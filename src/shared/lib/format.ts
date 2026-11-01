@@ -42,20 +42,13 @@ export function formatMessageTime(iso: string, locale: string, now = new Date())
   return `${day}, ${time(date, locale)}`;
 }
 
-/** How long ago: "vor 8 Minuten", "3 hours ago", up to 30 days; older ones as a date. */
-export function formatRelative(iso: string, locale: string, now = new Date()) {
-  const minutes = Math.round((now.getTime() - new Date(iso).getTime()) / 60_000);
-  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
-  if (minutes < 60) return capitalize(rtf.format(-Math.max(minutes, 0), 'minute'), locale);
-  if (minutes < 24 * 60) return capitalize(rtf.format(-Math.round(minutes / 60), 'hour'), locale);
-  const days = calendarDaysBetween(new Date(iso), now);
-  if (days <= 30) return capitalize(rtf.format(-days, 'day'), locale);
-  return formatDate(iso, locale);
-}
-
-/** A date without time: "14.03.2025", "Mar 14, 2025". */
+/** A date without time: "14. März 2025", "Mar 14, 2025". */
 export function formatDate(iso: string, locale: string) {
-  return new Date(iso).toLocaleDateString(locale, { dateStyle: 'medium' });
+  return new Date(iso).toLocaleDateString(locale, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 }
 
 /** A language code's name in the desk's language: "de" → "Deutsch", "Koreanisch", … */

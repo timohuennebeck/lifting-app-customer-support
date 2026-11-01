@@ -24,10 +24,7 @@ export function TicketRow({ ticket, name, selected, onSelect }: TicketRowProps) 
     if (selected) ref.current?.scrollIntoView({ block: 'nearest' });
   }, [selected]);
 
-  const preview =
-    ticket.last_author === 'team'
-      ? `${t('thread.team')}: ${ticket.last_preview ?? ''}`
-      : (ticket.last_preview ?? '');
+  const preview = ticket.last_preview ?? '';
 
   return (
     <button
@@ -44,16 +41,15 @@ export function TicketRow({ ticket, name, selected, onSelect }: TicketRowProps) 
         <StatusIcon status={ticket.status} className="text-ink" />
         <span
           className={cn(
-            'min-w-0 flex-1 truncate text-sm',
+            'min-w-0 flex-1 truncate text-[14px]',
             ticket.unread ? 'font-bold' : 'font-semibold',
           )}
         >
           {name}
         </span>
-        <span className="shrink-0 text-xs text-muted">
+        <span className="shrink-0 text-[12px] text-muted">
           {formatListTime(ticket.last_activity_at, i18n.language)}
         </span>
-        {ticket.unread ? <span className="size-2 shrink-0 rounded-full bg-ink" /> : null}
       </span>
       <span className="w-full truncate pl-[15px] text-[13px] font-semibold text-ink-2">
         {ticket.subject}

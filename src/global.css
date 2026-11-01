@@ -2,7 +2,7 @@
 
 /* The design's palette: a warm grey canvas with white panels and near-black ink. */
 @theme {
-  --font-sans: 'Inter Variable', 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  --font-sans: 'Inter', 'Noto Sans KR Variable', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --color-canvas: #ecece8;
@@ -32,6 +32,11 @@
   body,
   #root {
     height: 100%;
+  }
+
+  /* The design leaves line height to the browser ("normal"), unlike Tailwind's 1.5. */
+  html {
+    line-height: normal;
   }
 
   body {

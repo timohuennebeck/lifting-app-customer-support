@@ -4,7 +4,7 @@ import {
   calendarDaysBetween,
   formatListTime,
   formatMessageTime,
-  formatRelative,
+  formatDate,
   languageName,
 } from './format';
 
@@ -38,12 +38,11 @@ describe('formatMessageTime', () => {
   });
 });
 
-describe('formatRelative', () => {
-  it('says how long ago, then falls back to a date', () => {
-    expect(formatRelative(at(2026, 10, 1, 15, 22), 'en', now)).toBe('8 minutes ago');
-    expect(formatRelative(at(2026, 10, 1, 12, 30), 'de', now)).toBe('Vor 3 Stunden');
-    expect(formatRelative(at(2026, 9, 29, 12, 0), 'en', now)).toBe('3 days ago');
-    expect(formatRelative(at(2026, 5, 1, 12, 0), 'en', now)).toBe('Jun 1, 2026');
+describe('formatDate', () => {
+  it('writes day, short month and year', () => {
+    expect(formatDate(at(2025, 2, 14, 12, 0), 'de')).toBe('14. März 2025');
+    expect(formatDate(at(2026, 10, 1, 12, 0), 'de')).toBe('1. Nov. 2026');
+    expect(formatDate(at(2026, 5, 1, 12, 0), 'en')).toBe('Jun 1, 2026');
   });
 });
 
