@@ -18,7 +18,7 @@ appear in the user's app chat as from the Loqqa team; status changes appear ther
 
 ## How it works
 
-A static single-page app on Cloudflare Pages that talks to the app's Supabase project directly. It
+A static single-page app on Cloudflare (a Worker that only serves the built files) that talks to the app's Supabase project directly. It
 signs in as **one support account** whose `app_metadata.role` is `'support'`; the database grants
 that role, and only it, the access the desk needs (migration `20261101090000_support_desk.sql` in
 lifting-app):
@@ -77,23 +77,28 @@ Create it once per Supabase project (locally in Studio, in production in the das
 Only the service role can change `app_metadata`, so no user can give themselves this role. Leave
 sign-ups on in Supabase: the setting covers the whole project, including the app.
 
-## Deploying to Cloudflare Pages
+## Deploying to Cloudflare
 
-1. **Workers & Pages → Create → Pages → Connect to Git:** this repository.
-2. **Build settings:** framework preset "None", build command `npm run build`, output directory
-   `dist`. Pages reads the Node version from `.nvmrc` (or set `NODE_VERSION=24`).
-3. **Environment variables** (production and preview): `VITE_SUPABASE_URL` (e.g.
-   `https://<project-ref>.supabase.co`) and `VITE_SUPABASE_PUBLISHABLE_KEY`. Vite builds them into
-   the page; both are public values.
-4. **Custom domain:** e.g. `support.useloqqa.com`.
+The desk runs as a Worker that only serves the built files (`wrangler.jsonc`; no server code).
 
-Pages serves `index.html` for every path (there is no `404.html`), which is what the router needs.
-`public/_headers` sets a strict Content Security Policy that allows Supabase at `*.supabase.co`
-only; with a custom Supabase domain, add it there.
+1. **Workers & Pages → Create → Import a repository:** this repository. The Worker's name must
+   match `name` in `wrangler.jsonc` (`lifting-app-customer-support`).
+2. **Settings → Build:** build command `npm run build`, deploy command `npx wrangler deploy`. The
+   Node version comes from `.nvmrc`.
+3. **Settings → Build → Variables and secrets** (not the runtime "Variables and Secrets"):
+   `VITE_SUPABASE_URL` (e.g. `https://<project-ref>.supabase.co`) and
+   `VITE_SUPABASE_PUBLISHABLE_KEY`, as plain text. Vite builds them into the page, so they must
+   be there when it builds; both are public values. After changing them, retry the latest build.
+4. **Domains → Add → Custom domain:** e.g. `support.useloqqa.com`.
+
+Every push to `main` builds and deploys. `wrangler.jsonc` answers paths without a file (`/inbox`, a
+reload on a ticket) with `index.html`, which is what the router needs. `public/_headers` sets a
+strict Content Security Policy that allows Supabase at `*.supabase.co` only; with a custom Supabase
+domain, add it there.
 
 **Recommended:** put [Cloudflare Access](https://www.cloudflare.com/zero-trust/products/access/) in
-front of the custom domain and the `*.pages.dev` preview URLs (free for small teams), so only the
-team's email addresses reach the login page at all.
+front of the custom domain and the Worker's own URLs (free for small teams), so only the team's
+email addresses reach the login page at all.
 
 ## Checks
 

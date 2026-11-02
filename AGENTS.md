@@ -1,7 +1,7 @@
 # Loqqa Support: notes for AI agents
 
 The support desk for the Loqqa app (repository `lifting-app`): a Vite + React single-page app on
-Cloudflare Pages that talks to the app's Supabase project as one support account. `README.md`
+Cloudflare (a Worker serving the built files) that talks to the app's Supabase project as one support account. `README.md`
 covers what it does, setup and deployment.
 
 ## Where things go

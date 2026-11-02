@@ -1,0 +1,12 @@
+// Cloudflare deploys the desk as a Worker that only serves the built files in dist (no server
+// code). The name must match the Worker in the Cloudflare dashboard.
+{
+  "name": "lifting-app-customer-support",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    // Paths without a file (/inbox, /customers, a reload on a ticket) get index.html, so the
+    // router can show them, instead of a 404.
+    "not_found_handling": "single-page-application",
+  },
+}
