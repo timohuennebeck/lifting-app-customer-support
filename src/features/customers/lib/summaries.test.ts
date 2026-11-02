@@ -9,7 +9,7 @@ const ticket = (patch: Partial<InboxRow>): InboxRow => ({
   number: 1000,
   user_id: 'u1',
   kind: 'bug',
-  status: 'resolved',
+  status: 'closed',
   priority: null,
   subject: 'Subject',
   platform: 'ios',

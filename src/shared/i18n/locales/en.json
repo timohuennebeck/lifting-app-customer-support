@@ -49,35 +49,17 @@
     },
     "shortcuts": {
       "navigate": "J / K navigate",
-      "resolve": "E resolve",
+      "close": "E close",
       "reply": "R reply"
     }
   },
   "status": {
     "open": "Open",
-    "planned": "Planned",
-    "resolved": "Resolved",
-    "closed": "Closed"
-  },
-  "statusShown": {
-    "open": "Open",
-    "planned": "Planned",
-    "fixed": "Fixed",
-    "shipped": "Shipped",
     "closed": "Closed"
   },
   "statusHint": {
     "open": "New or in progress",
-    "planned": "Coming in an update",
-    "resolved": "Done – the user sees “{{label}}”",
-    "closed": "Closed, no action"
-  },
-  "statusPicker": {
-    "version": "Version (optional)",
-    "versionPlaceholder": "e.g. 1.4.3",
-    "preview": "In the app:",
-    "apply": "Set status",
-    "back": "Back"
+    "closed": "Done – the user can reopen it"
   },
   "kind": {
     "bug": "Bug",
@@ -91,9 +73,8 @@
   "thread": {
     "team": "Loqqa Team",
     "statusLine": "Status: {{status}}",
-    "comingIn": "Coming in update {{version}}",
-    "liveIn": "Live in update {{version}}",
     "reopened": "{{name}} reopened the request",
+    "sending": "Sending…",
     "screenshot": "Screenshot {{index}}",
     "uploading": "Still uploading",
     "closeHint": "Click or press Esc to close",
@@ -107,7 +88,6 @@
     "placeholder": "Reply to {{name}}",
     "placeholderTranslated": "Reply to {{name}} · translated into {{language}}",
     "send": "Send",
-    "sending": "Sending…",
     "tooLong_one": "{{count}} character too many",
     "tooLong_other": "{{count}} characters too many"
   },

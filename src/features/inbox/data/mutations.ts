@@ -1,9 +1,15 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useMutationState, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import type { InboxRow, TicketStatus } from '@/shared/data/database.types';
 import { assertOk, supabase } from '@/shared/data/supabase';
 import { ticketKeys } from '@/shared/data/tickets';
 import { translationKeys } from '@/shared/data/translations';
+import { toast } from '@/shared/lib/toast';
+
+import { restoreDraft } from '../lib/drafts';
+import { type PendingReply, teamMessagesWith } from '../lib/pending';
+import type { Thread } from './thread';
 
 /** The most a message may hold (the database's ticket_messages check). */
 export const MESSAGE_MAX = 5000;
@@ -21,24 +27,66 @@ function patchInbox(
   return previous;
 }
 
+const sendKey = (ticketId: string) => ['send-reply', ticketId] as const;
+
+interface Reply {
+  ticket: InboxRow;
+  content: string;
+  /** See PendingReply.known. */
+  known: number;
+}
+
 /**
  * A reply from the team, through the send-team-reply function: it translates the reply into the
  * user's app language (from whatever language it is written in) and saves both together, so the
  * user's app shows it in their language right away, as from the Loqqa team.
+ *
+ * Translating takes a few seconds, so the thread shows the reply at once (usePendingReplies) and
+ * the composer is free for the next one. Replies to a ticket go out one after another, in the
+ * order they were written; one that fails goes back into the ticket's draft.
  */
-export function useSendReply() {
+export function useSendReply(ticketId: string) {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async ({ ticket, content }: { ticket: InboxRow; content: string }) => {
+  const { mutate } = useMutation({
+    mutationKey: sendKey(ticketId),
+    scope: { id: `send-reply ${ticketId}` },
+    mutationFn: async ({ ticket, content }: Reply) => {
       const { error } = await supabase.functions.invoke('send-team-reply', {
         body: { ticket_id: ticket.id, content },
       });
       if (error) throw error;
     },
-    onSettled: (_data, _error, { ticket }) => {
-      void queryClient.invalidateQueries({ queryKey: ticketKeys.thread(ticket.id) });
+    onSuccess: () => toast(t('toast.sent')),
+    onError: (_error, { ticket, content }) => {
+      restoreDraft(ticket.id, content);
+      toast(t('toast.error'));
+    },
+    // Pending until the thread holds the saved reply, so it never shows twice or goes missing.
+    onSettled: async (_data, _error, { ticket }) => {
       void queryClient.invalidateQueries({ queryKey: ticketKeys.inbox });
       void queryClient.invalidateQueries({ queryKey: translationKeys.all });
+      await queryClient.invalidateQueries({ queryKey: ticketKeys.thread(ticket.id) });
+    },
+  });
+
+  return (ticket: InboxRow, content: string) => {
+    const thread = queryClient.getQueryData<Thread>(ticketKeys.thread(ticket.id));
+    const ahead = queryClient
+      .getMutationCache()
+      .findAll({ mutationKey: sendKey(ticket.id), status: 'pending' })
+      .filter((m) => (m.state.variables as Reply | undefined)?.content === content).length;
+    mutate({ ticket, content, known: teamMessagesWith(thread?.messages ?? [], content) + ahead });
+  };
+}
+
+/** A ticket's replies still being sent, oldest first. */
+export function usePendingReplies(ticketId: string): PendingReply[] {
+  return useMutationState({
+    filters: { mutationKey: sendKey(ticketId), status: 'pending' },
+    select: (mutation) => {
+      const { content, known } = mutation.state.variables as Reply;
+      return { key: `pending-${mutation.mutationId}`, content, known };
     },
   });
 }
@@ -46,8 +94,6 @@ export function useSendReply() {
 interface StatusChange {
   ticket: InboxRow;
   status: TicketStatus;
-  /** The app version the change ships in ("1.4.3"); the app words it in the user's language. */
-  version?: string;
 }
 
 /**
@@ -57,14 +103,13 @@ interface StatusChange {
 export function useSetStatus() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ ticket, status, version }: StatusChange) => {
+    mutationFn: async ({ ticket, status }: StatusChange) => {
       assertOk(
         await supabase.from('ticket_events').insert({
           user_id: ticket.user_id,
           ticket_id: ticket.id,
           kind: 'status',
           status,
-          version: version?.trim() || null,
         }),
       );
     },

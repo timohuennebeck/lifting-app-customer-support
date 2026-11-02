@@ -3,7 +3,7 @@
 // this in step with it, or replace it with the generated file.
 
 export type TicketKind = 'bug' | 'idea';
-export type TicketStatus = 'open' | 'planned' | 'resolved' | 'closed';
+export type TicketStatus = 'open' | 'closed';
 export type MessageAuthor = 'user' | 'team';
 export type EventKind = 'status' | 'reopened';
 export type Platform = 'ios' | 'android';
@@ -65,7 +65,6 @@ export type EventRow = {
   ticket_id: string;
   kind: EventKind;
   status: TicketStatus | null;
-  version: string | null;
   note: string | null;
   created_at: string;
 };
@@ -106,7 +105,6 @@ export type Database = {
           ticket_id: string;
           kind: EventKind;
           status?: TicketStatus | null;
-          version?: string | null;
           note?: string | null;
           id?: string;
           created_at?: string;

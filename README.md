@@ -1,20 +1,23 @@
 # Loqqa Support
 
 The support desk for [Loqqa](https://github.com/timohuennebeck/lifting-app): the team reads the bug
-reports and feature requests users send from the app, answers them and sets their status. Replies
-appear in the user's app chat as from the Loqqa team; status changes appear there as lines such as
-"Geplant · Erscheint mit Update 1.4.3".
+reports and feature requests users send from the app, answers them and closes them when done.
+Replies appear in the user's app chat as from the Loqqa team, in the user's language; closing and
+reopening appear there as lines such as "Status: Geschlossen". Anything more, such as the update a
+fix comes with, goes into a reply.
 
-- **Inbox:** tickets by status (open, planned, resolved, closed) and type (bug, idea), searchable
-  by name, email, ticket number and text. Unread tickets are marked until opened.
+- **Inbox:** tickets by status (open, closed) and type (bug, idea), searchable by name, email,
+  ticket number and text. Unread tickets are marked until opened. Users can reopen a closed
+  ticket from the app.
 - **Conversation:** messages, screenshots (click to enlarge), status lines, and the reply box. The
   placeholder names the customer's app language: reply in it.
 - **Customer panel:** email, sign-in method, user ID, sign-up, last activity, app language, the
   phone, OS and app version the ticket came from, and earlier requests.
 - **Customers:** everyone who wrote in, with device, number of requests and last contact.
 - **Languages:** German, English, Korean, Portuguese (Portugal and Brazil), like the app.
-- **Shortcuts:** `J` / `K` next and previous ticket, `E` resolve and move on, `R` reply,
-  `⌘↵` / `Ctrl+↵` send.
+- **Shortcuts:** `J` / `K` next and previous ticket, `E` close and move on, `R` reply,
+  `⌘↵` / `Ctrl+↵` send. A reply shows in the conversation at once while it is translated and
+  saved; one that fails goes back into the reply box.
 
 ## How it works
 

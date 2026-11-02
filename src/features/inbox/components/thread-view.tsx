@@ -9,8 +9,9 @@ import { formatMessageTime, languageName } from '@/shared/lib/format';
 import { Avatar } from '@/shared/ui/avatar';
 import { StatusIcon } from '@/shared/ui/status-icon';
 
+import { usePendingReplies } from '../data/mutations';
 import { useThread } from '../data/thread';
-import { isActive, shownStatus } from '../lib/status';
+import { type PendingReply, unsavedReplies } from '../lib/pending';
 import { buildTimeline } from '../lib/timeline';
 import { missingTranslations } from '../lib/translations';
 import { Attachments } from './attachments';
@@ -27,6 +28,11 @@ interface MessageProps {
   translation: string | undefined;
 }
 
+const BUBBLE =
+  'rounded-[18px] px-4 py-3 text-[14px] leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap';
+const TEAM_BUBBLE = `${BUBBLE} bg-ink text-white`;
+const USER_BUBBLE = `${BUBBLE} bg-field`;
+
 function Message({ message, sender, translation }: MessageProps) {
   const { t, i18n } = useTranslation();
   const [original, setOriginal] = useState(false);
@@ -41,17 +47,7 @@ function Message({ message, sender, translation }: MessageProps) {
       {` · ${time}`}
     </div>
   );
-  const bubble = (
-    <div
-      className={
-        fromTeam
-          ? 'rounded-[18px] bg-ink px-4 py-3 text-[14px] leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap text-white'
-          : 'rounded-[18px] bg-field px-4 py-3 text-[14px] leading-normal [overflow-wrap:anywhere] whitespace-pre-wrap'
-      }
-    >
-      {text}
-    </div>
-  );
+  const bubble = <div className={fromTeam ? TEAM_BUBBLE : USER_BUBBLE}>{text}</div>;
   // Switches between the translation and the message as written.
   const toggle = translation ? (
     <button
@@ -91,16 +87,22 @@ function Message({ message, sender, translation }: MessageProps) {
   );
 }
 
+/** A reply on its way: shown faded at once, until the saved one takes its place. */
+function PendingMessage({ reply }: { reply: PendingReply }) {
+  const { t } = useTranslation();
+  return (
+    <div className="flex max-w-[640px] flex-col items-end gap-1.5 self-end opacity-55" aria-busy>
+      <div className="text-[12px] text-muted">
+        <span className="font-semibold text-ink">{t('thread.team')}</span>
+        {` · ${t('thread.sending')}`}
+      </div>
+      <div className={TEAM_BUBBLE}>{reply.content}</div>
+    </div>
+  );
+}
+
 /** A status change or reopen as a quiet line, worded like the app words it to the user. */
-function EventLine({
-  event,
-  ticket,
-  sender,
-}: {
-  event: EventRow;
-  ticket: InboxRow;
-  sender: Sender;
-}) {
+function EventLine({ event, sender }: { event: EventRow; sender: Sender }) {
   const { t, i18n } = useTranslation();
   const time = formatMessageTime(event.created_at, i18n.language);
   const status = event.kind === 'reopened' ? 'open' : (event.status ?? 'open');
@@ -108,13 +110,8 @@ function EventLine({
   if (event.kind === 'reopened') {
     text = t('thread.reopened', { name: sender.name });
   } else {
-    const line = t('thread.statusLine', {
-      status: t(`statusShown.${shownStatus(ticket.kind, status)}`),
-    });
-    const detail = event.version
-      ? t(isActive(status) ? 'thread.comingIn' : 'thread.liveIn', { version: event.version })
-      : event.note;
-    text = detail ? `${line} · ${detail}` : line;
+    const line = t('thread.statusLine', { status: t(`status.${status}`) });
+    text = event.note ? `${line} · ${event.note}` : line;
   }
   return (
     <div className="flex items-center justify-center gap-2 text-[12px] text-muted">
@@ -180,14 +177,26 @@ export function ThreadView({ ticket, sender }: ThreadViewProps) {
   const { t, i18n } = useTranslation();
   const { data, isError } = useThread(ticket.id);
   const translations = useMissingTranslations(data?.messages, i18n.language);
-  const items = useMemo(() => (data ? buildTimeline(data.messages, data.events) : []), [data]);
+  const pending = usePendingReplies(ticket.id);
+  const unsaved = useMemo(() => unsavedReplies(pending, data?.messages ?? []), [pending, data]);
+  const items = useMemo(
+    () => (data ? buildTimeline(data.messages, data.events, unsaved) : []),
+    [data, unsaved],
+  );
   const scrollRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const atEnd = useRef(true);
+  const sending = useRef(unsaved.length);
 
   useLayoutEffect(() => {
     atEnd.current = true;
   }, [ticket.id]);
+
+  // A reply just sent is shown, even when the thread was scrolled up.
+  useLayoutEffect(() => {
+    if (unsaved.length > sending.current) atEnd.current = true;
+    sending.current = unsaved.length;
+  }, [unsaved.length]);
 
   useLayoutEffect(() => {
     const el = scrollRef.current;
@@ -227,8 +236,10 @@ export function ThreadView({ ticket, sender }: ThreadViewProps) {
               sender={sender}
               translation={translations?.get(item.message.id)}
             />
+          ) : item.type === 'event' ? (
+            <EventLine key={item.key} event={item.event} sender={sender} />
           ) : (
-            <EventLine key={item.key} event={item.event} ticket={ticket} sender={sender} />
+            <PendingMessage key={item.key} reply={item.reply} />
           ),
         )}
       </div>

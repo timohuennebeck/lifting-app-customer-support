@@ -23,7 +23,6 @@ import {
 } from '../lib/filter';
 import { filterOf, type InboxSearch } from '../lib/search';
 import { localizeTickets } from '../lib/translations';
-import { shownStatus } from '../lib/status';
 
 const route = getRouteApi('/_desk/inbox');
 
@@ -38,7 +37,7 @@ function shortcutsBlocked(event: KeyboardEvent) {
 /**
  * The inbox: tickets of one status on the left, the chosen one's conversation in the middle and
  * its sender on the right. Filters and the chosen ticket live in the URL. J/K move through the
- * list, E resolves and moves on, R jumps to the reply box.
+ * list, E closes the ticket and moves on, R jumps to the reply box.
  */
 export function InboxScreen() {
   const { t, i18n } = useTranslation();
@@ -83,14 +82,13 @@ export function InboxScreen() {
     if (ticket) update({ ticket: ticket.number }, true);
   };
 
-  const resolveAndNext = () => {
-    if (!selected || selected.status === 'resolved') return;
+  const closeAndNext = () => {
+    if (!selected || selected.status === 'closed') return;
     const next = visible.includes(selected) ? nextAfterLeaving(visible, selected.id) : visible[0];
-    const status = t(`statusShown.${shownStatus(selected.kind, 'resolved')}`);
     setStatus.mutate(
-      { ticket: selected, status: 'resolved' },
+      { ticket: selected, status: 'closed' },
       {
-        onSuccess: () => toast(t('toast.status', { status })),
+        onSuccess: () => toast(t('toast.status', { status: t('status.closed') })),
         onError: () => toast(t('toast.error')),
       },
     );
@@ -109,9 +107,9 @@ export function InboxScreen() {
   }, [selected, visibleNow, markRead]);
 
   // Shortcuts read the latest list and selection through a ref, so the listener stays put.
-  const keys = useRef({ visible, selected, select, resolveAndNext });
+  const keys = useRef({ visible, selected, select, closeAndNext });
   useEffect(() => {
-    keys.current = { visible, selected, select, resolveAndNext };
+    keys.current = { visible, selected, select, closeAndNext };
   });
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -120,7 +118,7 @@ export function InboxScreen() {
       const key = event.key.toLowerCase();
       if (key === 'j') current.select(neighbour(current.visible, current.selected?.id, 1));
       else if (key === 'k') current.select(neighbour(current.visible, current.selected?.id, -1));
-      else if (key === 'e') current.resolveAndNext();
+      else if (key === 'e') current.closeAndNext();
       else if (key === 'r' && composerRef.current) {
         event.preventDefault();
         composerRef.current.focus();

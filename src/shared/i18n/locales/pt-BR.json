@@ -49,35 +49,17 @@
     },
     "shortcuts": {
       "navigate": "J / K navegar",
-      "resolve": "E resolver",
+      "close": "E fechar",
       "reply": "R responder"
     }
   },
   "status": {
     "open": "Aberto",
-    "planned": "Planejado",
-    "resolved": "Resolvido",
-    "closed": "Fechado"
-  },
-  "statusShown": {
-    "open": "Aberto",
-    "planned": "Planejado",
-    "fixed": "Corrigido",
-    "shipped": "Implementado",
     "closed": "Fechado"
   },
   "statusHint": {
     "open": "Novo ou em andamento",
-    "planned": "Vem em uma atualização",
-    "resolved": "Concluído – o usuário vê “{{label}}”",
-    "closed": "Fechado, sem ação"
-  },
-  "statusPicker": {
-    "version": "Versão (opcional)",
-    "versionPlaceholder": "ex.: 1.4.3",
-    "preview": "No app:",
-    "apply": "Definir status",
-    "back": "Voltar"
+    "closed": "Concluído – o usuário pode reabri-lo"
   },
   "kind": {
     "bug": "Erro",
@@ -91,9 +73,8 @@
   "thread": {
     "team": "Equipe Loqqa",
     "statusLine": "Status: {{status}}",
-    "comingIn": "Chega na atualização {{version}}",
-    "liveIn": "Disponível na atualização {{version}}",
     "reopened": "{{name}} reabriu o chamado",
+    "sending": "Enviando…",
     "screenshot": "Captura de tela {{index}}",
     "uploading": "Ainda enviando",
     "closeHint": "Clique ou pressione Esc para fechar",
@@ -107,7 +88,6 @@
     "placeholder": "Responder {{name}}",
     "placeholderTranslated": "Responder {{name}} · traduzido para {{language}}",
     "send": "Enviar",
-    "sending": "Enviando…",
     "tooLong_one": "{{count}} caractere a mais",
     "tooLong_other": "{{count}} caracteres a mais"
   },

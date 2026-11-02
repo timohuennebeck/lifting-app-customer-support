@@ -1,14 +1,13 @@
-import { type Ref, useState } from 'react';
+import type { Ref } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import type { InboxRow } from '@/shared/data/database.types';
 import { cn } from '@/shared/lib/cn';
 import { languageName } from '@/shared/lib/format';
 import { sameLanguage } from '@/shared/lib/language';
-import { toast } from '@/shared/lib/toast';
 
 import { MESSAGE_MAX, useSendReply } from '../data/mutations';
-import { getDraft, setDraft } from '../lib/drafts';
+import { setDraft, useDraft } from '../lib/drafts';
 
 const IS_MAC = /Mac|iPhone|iPad/.test(navigator.userAgent);
 
@@ -20,37 +19,29 @@ export interface ComposerProps {
   inputRef?: Ref<HTMLTextAreaElement>;
 }
 
-/** The reply box: ⌘↵ (Ctrl+↵) or the button sends; the draft survives switching tickets. */
+/**
+ * The reply box: ⌘↵ (Ctrl+↵) or the button sends, and it is free again at once while the reply
+ * goes out. The draft survives switching tickets, and a reply that fails comes back into it.
+ */
 export function Composer({ ticket, name, language, inputRef }: ComposerProps) {
   const { t, i18n } = useTranslation();
-  const send = useSendReply();
+  const send = useSendReply(ticket.id);
   // Named when the reply reaches the customer in another language than the desk's.
   const translatedInto =
     language && !sameLanguage(language, i18n.language)
       ? languageName(language, i18n.language)
       : null;
-  const [text, setText] = useState(() => getDraft(ticket.id));
+  const text = useDraft(ticket.id);
   const content = text.trim();
   const over = text.length - MESSAGE_MAX;
-  const canSend = !!content && over <= 0 && !send.isPending;
+  const canSend = !!content && over <= 0;
 
-  const update = (value: string) => {
-    setText(value);
-    setDraft(ticket.id, value);
-  };
+  const update = (value: string) => setDraft(ticket.id, value);
 
   const submit = () => {
     if (!canSend) return;
-    send.mutate(
-      { ticket, content },
-      {
-        onSuccess: () => {
-          update('');
-          toast(t('toast.sent'));
-        },
-        onError: () => toast(t('toast.error')),
-      },
-    );
+    send(ticket, content);
+    update('');
   };
 
   return (
@@ -94,7 +85,7 @@ export function Composer({ ticket, name, language, inputRef }: ComposerProps) {
               canSend ? 'bg-ink' : 'bg-disabled',
             )}
           >
-            {send.isPending ? t('composer.sending') : t('composer.send')}
+            {t('composer.send')}
           </button>
         </div>
       </div>

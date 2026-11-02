@@ -22,16 +22,16 @@ covers what it does, setup and deployment.
   needs); update it with every schema change the desk relies on.
 - Reads go through TanStack Query with keys from `ticketKeys` / `customerKeys`; long lists through
   `fetchAll` (the API cuts responses at 1000 rows). Realtime only invalidates queries.
-- Users read team replies and status lines in the app, in their language: a status version is a
-  plain "1.4.3" that the app words itself; replies go through `send-team-reply`, which translates
-  them into the customer's app language. Messages show in the desk's language from
+- Tickets are open or closed, nothing in between; status lines are worded by the app in the
+  user's language. Replies go through `send-team-reply`, which translates them into the
+  customer's app language; the thread shows them at once (`usePendingReplies`) while it does. Messages show in the desk's language from
   `ticket_message_translations` (`useTranslations`); missing ones are asked for once per session.
 
 ## i18n
 
 `src/shared/i18n/locales/<lang>.json`; `en` is the source and its keys are type-checked. `de`, `en`,
 `ko`, `pt-PT` and `pt-BR` keep identical keys (a test checks it). Status names follow the app's
-wording (`statusShown`), so the desk shows what the user sees.
+wording, so the desk shows what the user sees.
 
 ## Conventions
 

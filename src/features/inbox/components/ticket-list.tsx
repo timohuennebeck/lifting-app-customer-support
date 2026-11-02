@@ -134,7 +134,7 @@ export function TicketList({
       </div>
       <div className="flex gap-3.5 px-5 pt-3 pb-4 text-[11px] text-subtle">
         <span>{t('inbox.shortcuts.navigate')}</span>
-        <span>{t('inbox.shortcuts.resolve')}</span>
+        <span>{t('inbox.shortcuts.close')}</span>
         <span>{t('inbox.shortcuts.reply')}</span>
       </div>
     </section>

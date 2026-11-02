@@ -5,7 +5,7 @@ import type { EventRow, InboxRow, MessageRow } from '@/shared/data/database.type
 
 import { matchesQuery, neighbour, nextAfterLeaving, statusCounts, visibleTickets } from './filter';
 import { filterOf, parseInboxSearch } from './search';
-import { shownStatus } from './status';
+import { unsavedReplies } from './pending';
 import { buildTimeline } from './timeline';
 
 const ticket = (patch: Partial<InboxRow>): InboxRow => ({
@@ -51,7 +51,7 @@ const customers: CustomerMap = new Map([
 
 const a = ticket({ id: 'a', number: 1001 });
 const b = ticket({ id: 'b', number: 1002, kind: 'idea', priority: 4, subject: 'Supersets' });
-const c = ticket({ id: 'c', number: 1003, status: 'planned' });
+const c = ticket({ id: 'c', number: 1003, status: 'closed' });
 const d = ticket({ id: 'd', number: 1004, user_id: 'u2', subject: 'Receipt' });
 const all = [a, b, c, d];
 
@@ -79,12 +79,7 @@ describe('visibleTickets and statusCounts', () => {
       a,
       b,
     ]);
-    expect(statusCounts(all, customers, 'bug', '')).toEqual({
-      open: 2,
-      planned: 1,
-      resolved: 0,
-      closed: 0,
-    });
+    expect(statusCounts(all, customers, 'bug', '')).toEqual({ open: 2, closed: 1 });
   });
 });
 
@@ -106,45 +101,39 @@ describe('neighbour and nextAfterLeaving', () => {
 describe('parseInboxSearch', () => {
   it('keeps valid values and drops defaults and junk', () => {
     expect(
-      parseInboxSearch({ status: 'planned', kind: 'idea', q: 'crash', ticket: '1042' }),
+      parseInboxSearch({ status: 'closed', kind: 'idea', q: 'crash', ticket: '1042' }),
     ).toEqual({
-      status: 'planned',
+      status: 'closed',
       kind: 'idea',
       q: 'crash',
       ticket: 1042,
     });
     expect(parseInboxSearch({ status: 'open', kind: 'all', q: '', ticket: '-3' })).toEqual({});
     expect(parseInboxSearch({ status: 'idea', ticket: '10.5' })).toEqual({});
+    expect(parseInboxSearch({ status: 'planned' })).toEqual({});
     expect(filterOf({})).toEqual({ status: 'open', kind: 'all', q: '' });
   });
 });
 
-describe('shownStatus', () => {
-  it('names a resolved ticket as the app does', () => {
-    expect(shownStatus('bug', 'resolved')).toBe('fixed');
-    expect(shownStatus('idea', 'resolved')).toBe('shipped');
-    expect(shownStatus('idea', 'planned')).toBe('planned');
-  });
+const message = (id: string, at: string, patch: Partial<MessageRow> = {}): MessageRow => ({
+  id,
+  user_id: 'u1',
+  ticket_id: 't1',
+  author: 'user',
+  content: id,
+  attachments: [],
+  language: null,
+  created_at: at,
+  ...patch,
 });
 
 describe('buildTimeline', () => {
-  const message = (id: string, at: string): MessageRow => ({
-    id,
-    user_id: 'u1',
-    ticket_id: 't1',
-    author: 'user',
-    content: id,
-    attachments: [],
-    language: null,
-    created_at: at,
-  });
   const event = (id: string, at: string): EventRow => ({
     id,
     user_id: 'u1',
     ticket_id: 't1',
     kind: 'status',
-    status: 'planned',
-    version: null,
+    status: 'closed',
     note: null,
     created_at: at,
   });
@@ -154,5 +143,35 @@ describe('buildTimeline', () => {
       [event('e1', '2026-11-01T10:00:00Z'), event('e0', '2026-11-01T08:00:00Z')],
     );
     expect(items.map((i) => i.key)).toEqual(['e0', 'm1', 'm2', 'e1']);
+  });
+  it('puts replies still being sent last, in the order they were written', () => {
+    const items = buildTimeline(
+      [message('m1', '2026-11-01T09:00:00Z')],
+      [],
+      [
+        { key: 'p1', content: 'Danke!', known: 0 },
+        { key: 'p2', content: 'Noch etwas', known: 0 },
+      ],
+    );
+    expect(items.map((i) => i.key)).toEqual(['m1', 'p1', 'p2']);
+  });
+});
+
+describe('unsavedReplies', () => {
+  const team = (id: string, content: string) =>
+    message(id, '2026-11-01T09:00:00Z', { author: 'team', content });
+  it('drops a reply once the thread holds one more team message with its text', () => {
+    const first = { key: 'p1', content: 'Danke!', known: 1 };
+    const second = { key: 'p2', content: 'Danke!', known: 2 };
+    const earlier = [team('m1', 'Danke!'), message('m2', '2026-11-01T09:01:00Z')];
+    expect(unsavedReplies([first, second], earlier)).toEqual([first, second]);
+    expect(unsavedReplies([first, second], [...earlier, team('m3', 'Danke!')])).toEqual([second]);
+    expect(
+      unsavedReplies([first, second], [...earlier, team('m3', 'Danke!'), team('m4', 'Danke!')]),
+    ).toEqual([]);
+  });
+  it("ignores the user's messages with the same text", () => {
+    const reply = { key: 'p1', content: 'ok', known: 0 };
+    expect(unsavedReplies([reply], [message('ok', '2026-11-01T09:00:00Z')])).toEqual([reply]);
   });
 });

@@ -49,35 +49,17 @@
     },
     "shortcuts": {
       "navigate": "J / K navegar",
-      "resolve": "E resolver",
+      "close": "E fechar",
       "reply": "R responder"
     }
   },
   "status": {
     "open": "Aberto",
-    "planned": "Planeado",
-    "resolved": "Resolvido",
-    "closed": "Fechado"
-  },
-  "statusShown": {
-    "open": "Aberto",
-    "planned": "Planeado",
-    "fixed": "Corrigido",
-    "shipped": "Implementado",
     "closed": "Fechado"
   },
   "statusHint": {
     "open": "Novo ou em curso",
-    "planned": "Chega numa atualização",
-    "resolved": "Concluído – o utilizador vê «{{label}}»",
-    "closed": "Fechado, sem ação"
-  },
-  "statusPicker": {
-    "version": "Versão (opcional)",
-    "versionPlaceholder": "p. ex. 1.4.3",
-    "preview": "Na app:",
-    "apply": "Definir estado",
-    "back": "Voltar"
+    "closed": "Concluído – o utilizador pode reabri-lo"
   },
   "kind": {
     "bug": "Erro",
@@ -91,9 +73,8 @@
   "thread": {
     "team": "Equipa Loqqa",
     "statusLine": "Estado: {{status}}",
-    "comingIn": "Chega na atualização {{version}}",
-    "liveIn": "Disponível na atualização {{version}}",
     "reopened": "{{name}} reabriu o pedido",
+    "sending": "A enviar…",
     "screenshot": "Captura de ecrã {{index}}",
     "uploading": "Ainda a carregar",
     "closeHint": "Clique ou prima Esc para fechar",
@@ -107,7 +88,6 @@
     "placeholder": "Responder a {{name}}",
     "placeholderTranslated": "Responder a {{name}} · traduzido para {{language}}",
     "send": "Enviar",
-    "sending": "A enviar…",
     "tooLong_one": "{{count}} carácter a mais",
     "tooLong_other": "{{count}} caracteres a mais"
   },

@@ -3,7 +3,7 @@ import type { TicketStatus } from '@/shared/data/database.types';
 import type { InboxFilter, KindFilter } from './filter';
 import { STATUSES } from './status';
 
-/** The inbox's URL: `/inbox?status=planned&kind=idea&q=crash&ticket=1042`, all optional. */
+/** The inbox's URL: `/inbox?status=closed&kind=idea&q=crash&ticket=1042`, all optional. */
 export interface InboxSearch {
   status?: TicketStatus;
   kind?: Exclude<KindFilter, 'all'>;

@@ -62,7 +62,7 @@ export function statusCounts(
   kind: KindFilter,
   q: string,
 ): Record<TicketStatus, number> {
-  const counts: Record<TicketStatus, number> = { open: 0, planned: 0, resolved: 0, closed: 0 };
+  const counts: Record<TicketStatus, number> = { open: 0, closed: 0 };
   for (const t of tickets) {
     if (matchesKind(t, kind) && matchesQuery(t, customers, q)) counts[t.status] += 1;
   }
