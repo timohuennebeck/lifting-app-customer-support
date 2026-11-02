@@ -1,7 +1,7 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { useTranslation } from 'react-i18next';
 
-import { LANGUAGES, setLanguage } from '../i18n';
+import { currentLanguage, LANGUAGES, setLanguage } from '../i18n';
 import { cn } from '../lib/cn';
 import { menuItem, menuSurface } from '../ui/menu';
 
@@ -23,7 +23,7 @@ function Check() {
 /** The sidebar's language switch: the current code in a circle, the languages beside it. */
 export function LanguageMenu() {
   const { t, i18n } = useTranslation();
-  const current = LANGUAGES.find((l) => l.code === i18n.language) ?? LANGUAGES[1];
+  const current = currentLanguage(i18n.language);
 
   return (
     <DropdownMenu.Root>

@@ -23,6 +23,9 @@
   --color-hover: #f6f6f3;
   --color-disabled: #bdbdb7;
   --color-closed: #b5b5af;
+  --color-danger: #c2422b;
+  --color-danger-ink: #501d15;
+  --color-danger-bg: #fbece8;
 
   --radius-panel: 22px;
 }

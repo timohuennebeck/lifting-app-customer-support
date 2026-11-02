@@ -8,7 +8,7 @@ import ptBR from './locales/pt-BR.json';
 import ptPT from './locales/pt-PT.json';
 import { isLanguage, type LanguageCode, matchLanguage } from './languages';
 
-export { LANGUAGES, type LanguageCode } from './languages';
+export { currentLanguage, LANGUAGES, type LanguageCode } from './languages';
 
 const STORAGE_KEY = 'support.language';
 

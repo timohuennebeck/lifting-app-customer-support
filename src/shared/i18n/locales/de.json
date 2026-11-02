@@ -1,7 +1,8 @@
 {
   "app": {
     "name": "Loqqa Support",
-    "logo": "L"
+    "logo": "L",
+    "wordmark": "Loqqa"
   },
   "nav": {
     "inbox": "Posteingang",
@@ -26,7 +27,10 @@
     "invalid": "E-Mail oder Passwort ist falsch.",
     "denied": "Dieses Konto hat keinen Zugang zum Support.",
     "unreachable": "Der Server ist nicht erreichbar. Prüf die Verbindung und versuch es noch mal.",
-    "note": "Nur für das Loqqa-Support-Team."
+    "note": "Nur für Konten des Support-Teams.",
+    "errorTitle": "Anmeldung fehlgeschlagen",
+    "failed": "Etwas ist schiefgelaufen. Versuch es gleich noch mal.",
+    "dismiss": "Schließen"
   },
   "inbox": {
     "title": "Posteingang",

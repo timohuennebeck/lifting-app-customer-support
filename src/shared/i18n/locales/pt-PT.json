@@ -1,7 +1,8 @@
 {
   "app": {
     "name": "Loqqa Support",
-    "logo": "L"
+    "logo": "L",
+    "wordmark": "Loqqa"
   },
   "nav": {
     "inbox": "Caixa de entrada",
@@ -26,7 +27,10 @@
     "invalid": "E-mail ou palavra-passe incorretos.",
     "denied": "Esta conta não tem acesso ao apoio ao cliente.",
     "unreachable": "Não é possível contactar o servidor. Verifique a ligação e tente novamente.",
-    "note": "Apenas para a equipa de apoio da Loqqa."
+    "note": "Apenas contas da equipa de apoio.",
+    "errorTitle": "Não foi possível iniciar sessão",
+    "failed": "Algo correu mal. Tente novamente daqui a pouco.",
+    "dismiss": "Fechar"
   },
   "inbox": {
     "title": "Caixa de entrada",

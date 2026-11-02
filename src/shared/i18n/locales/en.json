@@ -1,7 +1,8 @@
 {
   "app": {
     "name": "Loqqa Support",
-    "logo": "L"
+    "logo": "L",
+    "wordmark": "Loqqa"
   },
   "nav": {
     "inbox": "Inbox",
@@ -26,7 +27,10 @@
     "invalid": "Email or password is wrong.",
     "denied": "This account has no access to the support desk.",
     "unreachable": "The server can't be reached. Check your connection and try again.",
-    "note": "Only for the Loqqa support team."
+    "note": "Support team accounts only.",
+    "errorTitle": "Couldn't sign you in",
+    "failed": "Something went wrong. Please try again in a moment.",
+    "dismiss": "Close"
   },
   "inbox": {
     "title": "Inbox",
