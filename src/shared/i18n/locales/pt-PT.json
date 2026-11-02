@@ -25,6 +25,7 @@
     "fillBoth": "Introduza o e-mail e a palavra-passe.",
     "invalid": "E-mail ou palavra-passe incorretos.",
     "denied": "Esta conta não tem acesso ao apoio ao cliente.",
+    "unreachable": "Não é possível contactar o servidor. Verifique a ligação e tente novamente.",
     "note": "Apenas para a equipa de apoio da Loqqa."
   },
   "inbox": {

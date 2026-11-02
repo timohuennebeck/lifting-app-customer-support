@@ -12,13 +12,15 @@ export async function currentSession() {
   return data.session;
 }
 
-export type SignInResult = 'ok' | 'invalid' | 'denied' | 'error';
+export type SignInResult = 'ok' | 'invalid' | 'denied' | 'unreachable' | 'error';
 
 /** Signs in with email and password; any account other than the support one is signed out. */
 export async function signIn(email: string, password: string): Promise<SignInResult> {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) {
-    return error.code === 'invalid_credentials' || error.status === 400 ? 'invalid' : 'error';
+    if (error.code === 'invalid_credentials' || error.status === 400) return 'invalid';
+    // No answer (the request timed out) or no connection at all.
+    return error.name === 'AuthRetryableFetchError' ? 'unreachable' : 'error';
   }
   if (!isSupportSession(data.session)) {
     await supabase.auth.signOut();

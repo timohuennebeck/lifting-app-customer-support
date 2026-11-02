@@ -3,8 +3,20 @@ import { createClient, type PostgrestError } from '@supabase/supabase-js';
 import { env } from '../config/env';
 import type { Database } from './database.types';
 
+/**
+ * Gives up on a request that gets no answer (an unreachable server would otherwise keep the desk
+ * waiting forever); the functions, which translate with OpenAI, get longer.
+ */
+const fetchWithTimeout: typeof fetch = (input, init) => {
+  const url = input instanceof Request ? input.url : String(input);
+  const timeout = AbortSignal.timeout(url.includes('/functions/v1/') ? 60_000 : 15_000);
+  const signal = init?.signal ? AbortSignal.any([init.signal, timeout]) : timeout;
+  return fetch(input, { ...init, signal });
+};
+
 export const supabase = createClient<Database>(env.supabaseUrl, env.supabasePublishableKey, {
   auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
+  global: { fetch: fetchWithTimeout },
 });
 
 /** Rows the API returns per request at most (`max_rows` in lifting-app/supabase/config.toml). */

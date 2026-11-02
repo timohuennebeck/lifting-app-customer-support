@@ -25,6 +25,7 @@
     "fillBoth": "Bitte E-Mail und Passwort eingeben.",
     "invalid": "E-Mail oder Passwort ist falsch.",
     "denied": "Dieses Konto hat keinen Zugang zum Support.",
+    "unreachable": "Der Server ist nicht erreichbar. Prüf die Verbindung und versuch es noch mal.",
     "note": "Nur für das Loqqa-Support-Team."
   },
   "inbox": {

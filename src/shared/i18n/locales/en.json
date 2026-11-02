@@ -25,6 +25,7 @@
     "fillBoth": "Enter your email and password.",
     "invalid": "Email or password is wrong.",
     "denied": "This account has no access to the support desk.",
+    "unreachable": "The server can't be reached. Check your connection and try again.",
     "note": "Only for the Loqqa support team."
   },
   "inbox": {

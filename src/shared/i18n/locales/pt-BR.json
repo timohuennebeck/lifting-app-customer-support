@@ -25,6 +25,7 @@
     "fillBoth": "Digite seu e-mail e senha.",
     "invalid": "E-mail ou senha incorretos.",
     "denied": "Esta conta não tem acesso ao suporte.",
+    "unreachable": "Não foi possível conectar ao servidor. Verifique a conexão e tente de novo.",
     "note": "Somente para a equipe de suporte da Loqqa."
   },
   "inbox": {
