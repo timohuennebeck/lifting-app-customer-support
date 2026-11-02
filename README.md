@@ -60,6 +60,9 @@ include the support access).
 
 Create it once per Supabase project (locally in Studio, in production in the dashboard):
 
+0. **Email sign-in must be on** (the app itself uses Apple and Google): lifting-app's
+   `config.toml` turns it on locally; in production check **Authentication → Sign In / Providers →
+   Email**. With it off, signing in fails with "Das hat nicht geklappt".
 1. **Authentication → Users → Add user:** email and a strong password, "Auto confirm" on.
 2. **SQL editor**, as the project owner:
 
