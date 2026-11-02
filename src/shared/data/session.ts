@@ -19,6 +19,8 @@ export async function signIn(email: string, password: string): Promise<SignInRes
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) {
     if (error.code === 'invalid_credentials' || error.status === 400) return 'invalid';
+    // The details for the browser console, e.g. "Invalid API key" with a wrong publishable key.
+    console.error('Signing in failed', error.status, error.code, error.message);
     // No answer (the request timed out) or no connection at all.
     return error.name === 'AuthRetryableFetchError' ? 'unreachable' : 'error';
   }
