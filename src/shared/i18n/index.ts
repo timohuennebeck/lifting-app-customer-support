@@ -3,6 +3,8 @@ import { initReactI18next } from 'react-i18next';
 
 import de from './locales/de.json';
 import en from './locales/en.json';
+import es from './locales/es.json';
+import fr from './locales/fr.json';
 import ko from './locales/ko.json';
 import ptBR from './locales/pt-BR.json';
 import ptPT from './locales/pt-PT.json';
@@ -44,6 +46,8 @@ void i18n.use(initReactI18next).init({
   resources: {
     de: { translation: de },
     en: { translation: en },
+    es: { translation: es },
+    fr: { translation: fr },
     ko: { translation: ko },
     'pt-PT': { translation: ptPT },
     'pt-BR': { translation: ptBR },

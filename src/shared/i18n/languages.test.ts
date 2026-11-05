@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import de from './locales/de.json';
 import en from './locales/en.json';
+import es from './locales/es.json';
+import fr from './locales/fr.json';
 import ko from './locales/ko.json';
 import ptBR from './locales/pt-BR.json';
 import ptPT from './locales/pt-PT.json';
@@ -15,7 +17,12 @@ describe('matchLanguage', () => {
     expect(matchLanguage('pt-BR')).toBe('pt-BR');
     expect(matchLanguage('pt-br')).toBe('pt-BR');
     expect(matchLanguage('pt')).toBe('pt-PT');
-    expect(matchLanguage('fr-FR')).toBeNull();
+    expect(matchLanguage('es-MX')).toBe('es');
+    expect(matchLanguage('es-419')).toBe('es');
+    expect(matchLanguage('es')).toBe('es');
+    expect(matchLanguage('fr-FR')).toBe('fr');
+    expect(matchLanguage('fr-CA')).toBe('fr');
+    expect(matchLanguage('it-IT')).toBeNull();
   });
 });
 
@@ -30,6 +37,8 @@ const keys = (value: object, prefix = ''): string[] =>
 describe('translations', () => {
   it.each([
     ['de', de],
+    ['es', es],
+    ['fr', fr],
     ['ko', ko],
     ['pt-PT', ptPT],
     ['pt-BR', ptBR],

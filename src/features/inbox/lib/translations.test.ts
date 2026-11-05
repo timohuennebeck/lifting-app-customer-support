@@ -47,6 +47,11 @@ describe('sameLanguage', () => {
   it('ignores the region, so pt-PT and pt-BR count as one', () => {
     expect(sameLanguage('pt-BR', 'pt-PT')).toBe(true);
     expect(sameLanguage('de', 'de-AT')).toBe(true);
+    expect(sameLanguage('es', 'es-419')).toBe(true);
+    expect(sameLanguage('es-MX', 'es-ES')).toBe(true);
+    expect(sameLanguage('fr', 'fr-CA')).toBe(true);
+    expect(sameLanguage('fr-BE', 'fr_FR')).toBe(true);
+    expect(sameLanguage('es', 'fr')).toBe(false);
     expect(sameLanguage('ko', 'de')).toBe(false);
   });
 });

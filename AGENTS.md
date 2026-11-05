@@ -30,7 +30,7 @@ covers what it does, setup and deployment.
 ## i18n
 
 `src/shared/i18n/locales/<lang>.json`; `en` is the source and its keys are type-checked. `de`, `en`,
-`ko`, `pt-PT` and `pt-BR` keep identical keys (a test checks it). Status names follow the app's
+`es`, `fr`, `ko`, `pt-PT` and `pt-BR` keep identical keys (a test checks it). Status names follow the app's
 wording, so the desk shows what the user sees.
 
 ## Conventions

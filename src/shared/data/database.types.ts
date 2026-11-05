@@ -72,7 +72,7 @@ export type EventRow = {
 export type CustomerRow = {
   user_id: string;
   first_name: string | null;
-  /** App language: en, de, pt-PT, pt-BR or ko. */
+  /** App language: en, de, pt-PT, pt-BR, ko, es or fr. */
   language: string | null;
   email: string | null;
   /** apple, google, email or anonymous. */

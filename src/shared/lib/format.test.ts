@@ -51,5 +51,9 @@ describe('languageName', () => {
     expect(languageName('de', 'de')).toBe('Deutsch');
     expect(languageName('ko', 'en')).toBe('Korean');
     expect(languageName('pt-BR', 'de')).toBe('Portugiesisch (Brasilien)');
+    expect(languageName('es', 'de')).toBe('Spanisch');
+    expect(languageName('fr', 'de')).toBe('Französisch');
+    expect(languageName('es', 'es')).toBe('español');
+    expect(languageName('fr-CA', 'en')).toBe('Canadian French');
   });
 });

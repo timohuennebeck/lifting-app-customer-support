@@ -1,0 +1,135 @@
+{
+  "app": {
+    "name": "Loqqa Support",
+    "logo": "L",
+    "wordmark": "Loqqa"
+  },
+  "nav": {
+    "inbox": "Bandeja",
+    "customers": "Clientes"
+  },
+  "language": {
+    "title": "Idioma"
+  },
+  "account": {
+    "name": "Equipo de Loqqa",
+    "initials": "EL",
+    "signOut": "Cerrar sesión"
+  },
+  "login": {
+    "title": "Soporte al cliente",
+    "subtitle": "Inicia sesión con la cuenta de soporte.",
+    "email": "Correo",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "signingIn": "Iniciando sesión…",
+    "fillBoth": "Introduce tu correo y tu contraseña.",
+    "invalid": "El correo o la contraseña no son correctos.",
+    "denied": "Esta cuenta no tiene acceso al soporte.",
+    "unreachable": "No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+    "note": "Solo para cuentas del equipo de soporte.",
+    "errorTitle": "No se pudo iniciar sesión",
+    "failed": "Algo salió mal. Inténtalo de nuevo en un momento.",
+    "dismiss": "Cerrar"
+  },
+  "inbox": {
+    "title": "Bandeja",
+    "openCount_one": "{{count}} abierta",
+    "openCount_other": "{{count}} abiertas",
+    "search": "Buscar nombre, correo, ticket",
+    "empty": "No hay solicitudes en esta vista.",
+    "loading": "Cargando…",
+    "loadFailed": "No se pudo cargar la bandeja.",
+    "retry": "Reintentar",
+    "noTicket": "Elige una solicitud a la izquierda.",
+    "kinds": {
+      "all": "Todas",
+      "bug": "Errores",
+      "idea": "Ideas"
+    },
+    "shortcuts": {
+      "navigate": "J / K navegar",
+      "close": "E cerrar",
+      "reply": "R responder"
+    }
+  },
+  "status": {
+    "open": "Abierto",
+    "closed": "Cerrado"
+  },
+  "statusHint": {
+    "open": "Nueva o en curso",
+    "closed": "Resuelta – el usuario puede reabrirla"
+  },
+  "kind": {
+    "bug": "Error",
+    "idea": "Idea"
+  },
+  "importance": "Importancia {{value}}/5",
+  "platform": {
+    "ios": "iOS",
+    "android": "Android"
+  },
+  "thread": {
+    "team": "Equipo de Loqqa",
+    "statusLine": "Estado: {{status}}",
+    "reopened": "{{name}} reabrió la solicitud",
+    "sending": "Enviando…",
+    "screenshot": "Captura {{index}}",
+    "uploading": "Aún se está subiendo",
+    "closeHint": "Haz clic o usa Esc para cerrar",
+    "loadFailed": "No se pudo cargar la conversación.",
+    "translatedFrom": "Traducido de: {{language}}",
+    "translated": "Traducido",
+    "showOriginal": "Ver original",
+    "showTranslation": "Ver traducción"
+  },
+  "composer": {
+    "placeholder": "Responder a {{name}}",
+    "placeholderTranslated": "Responder a {{name}} · se traducirá al {{language}}",
+    "send": "Enviar",
+    "tooLong_one": "{{count}} carácter de más",
+    "tooLong_other": "{{count}} caracteres de más"
+  },
+  "toast": {
+    "sent": "Respuesta enviada",
+    "status": "Estado: {{status}}",
+    "copied": "Copiado",
+    "userIdCopied": "ID de usuario copiado",
+    "error": "No funcionó. Inténtalo de nuevo."
+  },
+  "customer": {
+    "copyEmail": "Copiar correo",
+    "account": "Cuenta",
+    "signIn": "Inicio de sesión",
+    "userId": "ID de usuario",
+    "signedUp": "Registro",
+    "lastActive": "Última actividad",
+    "device": "Dispositivo",
+    "model": "Dispositivo",
+    "system": "Sistema",
+    "appVersion": "Versión de la app",
+    "noDevice": "No enviado – versión antigua de la app",
+    "unknown": "Desconocido",
+    "providers": {
+      "apple": "Apple",
+      "google": "Google",
+      "email": "Correo",
+      "anonymous": "Invitado"
+    }
+  },
+  "customers": {
+    "title": "Clientes",
+    "count_one": "{{count}} cliente",
+    "count_other": "{{count}} clientes",
+    "search": "Nombre o correo",
+    "columns": {
+      "name": "Nombre",
+      "email": "Correo",
+      "device": "Dispositivo",
+      "requests": "Solicitudes",
+      "lastContact": "Último contacto"
+    },
+    "empty": "No se encontró ningún cliente."
+  }
+}

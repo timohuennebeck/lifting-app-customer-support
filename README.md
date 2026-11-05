@@ -14,7 +14,7 @@ fix comes with, goes into a reply.
 - **Customer panel:** email, sign-in method, user ID, sign-up, last activity, app language, the
   phone, OS and app version the ticket came from, and earlier requests.
 - **Customers:** everyone who wrote in, with device, number of requests and last contact.
-- **Languages:** German, English, Korean, Portuguese (Portugal and Brazil), like the app.
+- **Languages:** German, English, Korean, Portuguese (Portugal and Brazil), Spanish, French, like the app.
 - **Shortcuts:** `J` / `K` next and previous ticket, `E` close and move on, `R` reply,
   `⌘↵` / `Ctrl+↵` send. A reply shows in the conversation at once while it is translated and
   saved; one that fails goes back into the reply box.
