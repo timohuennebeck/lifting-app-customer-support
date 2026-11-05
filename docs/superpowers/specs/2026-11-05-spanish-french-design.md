@@ -15,12 +15,15 @@ so both languages are written for all their speakers.
 
 - **One `es` and no regional split.** It serves Spain and Latin America, in neutral wording.
 - **Portuguese stays split** into `pt-PT` and `pt-BR`.
-- **Version 1.0 stays in review.** It goes live in its five languages, and Spanish and French ship
-  as update 1.1 with a new build.
+- **Spanish and French ship in the first release.** On 5 November 2026 the owner took version 1.0
+  out of review (it had been waiting since the day before), so it goes in again with seven
+  languages and a new build. It keeps the version number 1.0.
 - **Scope:** all three repos and the App Store screenshots.
-- **Coach consent stays by signing up in 1.0,** with no notice in the app and no resubmission, as
-  an accepted risk (`docs/legal/OPEN-QUESTIONS.md` item 4). 1.1 names the coach in the sign-up
-  sentence (see "lifting-app").
+- **The first release names the coach in the sign-up sentence** (see "lifting-app"). Consent stays
+  by signing up, with no notice in the app, as an accepted risk (`docs/legal/OPEN-QUESTIONS.md`
+  item 4).
+- **The owner walks through the app by hand.** An automated pass covered most flows on a 375 pt
+  simulator; the owner does the rest, on a real phone, before submission.
 
 ## Calls made by the author
 
@@ -28,18 +31,17 @@ The owner saw these in chat and didn't object, but didn't explicitly decide them
 
 - **One `fr`, with no Canadian variant.** Store listing for France only (`fr-FR`).
 - **Two Spanish store listings**, `es-ES` and `es-MX`, sharing the same text and screenshots.
-- **Tone:** informal *tú* and *tu*, matching the app's *du*, *tu*, *você* and 해요체.
+- **Tone:** informal _tú_ and _tu_, matching the app's _du_, _tu_, _você_ and 해요체.
 - **Translation by Claude**, as for the earlier languages, without native-speaker review unless the
   owner names a reviewer. Unreviewed status is recorded in `docs/legal/OPEN-QUESTIONS.md`.
 - **Fix these existing gaps in the same pass:** see "Existing gaps".
 - **Add a key-parity check to the app.** See "lifting-app".
-- **1.1 is released by hand,** not automatically on approval, so the last legal step and the
-  release can happen on the same day. See "Order".
-- **The website's `/es` and `/fr` go live before 1.1 is submitted,** so the store's links work
+- **How 1.0 is released** (by hand or on approval) is asked when it's submitted.
+- **The website's `/es` and `/fr` go live before 1.0 is submitted,** so the store's links work
   during review. Anyone can reach them for those few days; the language menu shows them too.
 - **Text cut-off:** once translation starts, anything merged to `lifting-app` that adds or changes
   text brings its `es` and `fr` in the same merge.
-- **The Training tab's day view stays out of 1.1.** `claude/training-tab-daily-view-26d18f`
+- **The Training tab's day view stays out of this release.** `claude/training-tab-daily-view-26d18f`
   conflicts with `main` in 7 files and needs rework. If it lands first, its text needs translating
   too, and it needs its own screenshot check.
 
@@ -56,7 +58,7 @@ The owner saw these in chat and didn't object, but didn't explicitly decide them
 - Offering a language in the app or the App Store before its build, texts and legal documents are
   ready for users.
 - English showing up silently in the app because a key or catalog entry was missed.
-- Touching version 1.0 in App Store Connect while it is in review or live.
+- Changing the version in App Store Connect while it is in review or live.
 - Presenting unreviewed translations, above all legal ones, as reviewed.
 
 ## Constraints
@@ -76,17 +78,15 @@ The owner saw these in chat and didn't object, but didn't explicitly decide them
 
 Each stage depends on the one before it, except that the desk can land any time after stage 1.
 
-1. **Server:** migration and function deploy. It only adds, so it is safe for 1.0 users.
-2. **App:** texts and native strings, version bumped to 1.1.0, TestFlight build.
+1. **Server:** migration and function deploy. It only adds, so it is safe for existing builds.
+2. **App:** texts and native strings, TestFlight build at version 1.0.0.
 3. **Support desk:** before the desk can show or request `es` and `fr`, the server has to accept
    them. A user language the server doesn't recognise is treated as English.
 4. **Legal and website:** the `es` and `fr` texts, then `/es` and `/fr`. The screenshot tool runs on
    a `lifting-app` checkout, so it needs stage 2 merged. The website build fails without screenshots
    for every language in `LOCALES`.
-5. **App Store:** the listing links to the new website pages and goes in with the 1.1 build, set to
-   manual release.
-6. **Release day:** after approval, publish terms 1.3 for the other five languages (see "Legal"),
-   update the website, then release 1.1.
+5. **App Store:** the listing links to the new website pages and goes in with the new build.
+6. **Release:** after approval, release 1.0, or it goes live by itself if it was set to.
 
 ## lifting-app
 
@@ -102,7 +102,6 @@ Each stage depends on the one before it, except that the desk can land any time 
 - `locales/{es,fr}.json` and `app.json` `locales`: the four iOS permission texts.
 - `app.json`: `es` and `fr` in `expo-localization`'s `supportedLocales`, for iOS and Android.
 - `plugins/weight-shortcut/strings.json`: the Siri phrases.
-- `app.json`: `version` to 1.1.0.
 - `AGENTS.md`, `README.md`: the language lists.
 - **Sign-up sentence:** `auth.json` in all seven languages ends "…to tailor your training, and to
   Kai sending your training and body data to OpenAI in the USA." This is the clause promised in
@@ -133,7 +132,7 @@ Functions, then deploy:
 - `supabase/functions/_shared/translate.ts`: `TARGETS`, with the tone above.
 - `supabase/functions/coach-transcribe/index.ts`: `CONTEXT` and `SUPPORT_CONTEXT`.
 - `supabase/functions/read-exercises/exercises.ts`: spoken-number examples for both languages,
-  including French forms like *quatre-vingts*.
+  including French forms like _quatre-vingts_.
 - `supabase/functions/_shared/coach/prompt.ts`: how the coach addresses the user.
 - `translate.test.ts`, `support-functions.test.ts`: cover the new languages where they list others.
 
@@ -153,19 +152,13 @@ language, and run them. How many beyond that is left to the builder.
   by a native speaker or lawyer; whether "German is binding" holds for consumers in France and
   Spain, and whether local rules need anything further, is a question for the lawyer.
 
-**Versions.** Privacy 1.3 and terms 1.2 have been live in five languages since 5 November
-2026. Translate
+**Versions.** Privacy 1.3 and terms 1.2 have been live in five languages since 5 November 2026. Translate
 from those. The terms' language clause (`docs/legal/en/terms.md`, "Language", and its counterparts)
 names the available languages and needs Spanish and French, so the terms go to 1.3, with that clause
-as the only change and without `requires_reacceptance`. A pushed migration takes effect at once, so
-this goes in two steps:
-
-- **Before 1.1 is submitted:** `docs/legal/{es,fr}/`, published through the script's locale option
-  as privacy 1.3 and terms 1.3 (the latter with the new clause). These rows reach nobody on 1.0,
-  because 1.0 can't select those languages, and Apple's review of 1.1 needs them. The other five
-  languages' files stay untouched, so the website's full sync is safe at this point.
-- **On release day:** the clause in the other five languages' files, their terms 1.3 migration, and
-  the website's sync again.
+as the only change and without `requires_reacceptance`. All of it goes out together before 1.0 is
+submitted: `docs/legal/{es,fr}/` as privacy 1.3 and terms 1.3, the clause in the other five
+languages' terms as 1.3, and the website's sync. A pushed migration takes effect at once, and 1.0
+has no public users yet.
 
 ## Support desk
 
@@ -197,7 +190,7 @@ properly in the customer panel and the reply box.
 
 ## App Store
 
-All of it goes on the new 1.1 version, never on 1.0.
+All of it goes on version 1.0, which is editable again since it left review.
 
 **Screenshots.** The source is the design artifact "Loqqa App Store Screens"
 (https://claude.ai/artifact/RnqamYKxuRM9TUH3TL2GQ7): one page per language, seven boards per page
@@ -215,11 +208,6 @@ language rather than translating them. Respect Apple's limits (30 characters for
 
 **Subscriptions.** Display names and descriptions for both products and the group, in `es` and `fr`.
 Use the version-scoped `asc subscriptions versions localizations` commands.
-
-**What's New.** A short note in every store language, as 1.1 is an update.
-
-**Timing.** App Store Connect normally refuses a new version while another is in review, so the 1.1
-version can only be created once 1.0 is live. The rest of the work doesn't wait for that.
 
 **Links.** Per-language privacy and support URLs: `useloqqa.com/es`, `/es/privacy`, `/fr` and
 `/fr/privacy`.
@@ -239,8 +227,8 @@ version can only be created once 1.0 is live. The rest of the work doesn't wait 
 - A Spanish user's support message appears in the desk in German, and a reply reaches them in
   Spanish. The same for French.
 - The desk works in both languages. `/es` and `/fr` with terms, privacy and imprint are live.
-- 1.1 is submitted with the three new listings, screenshots and subscription names, approved and
-  released by hand, with terms 1.3 live in all seven languages that day.
+- 1.0 is submitted with the three new listings, screenshots and subscription names, and terms 1.3
+  is live in all seven languages before that.
 - Each repo's checks pass.
 
 ## Left to the builder
@@ -253,6 +241,4 @@ version can only be created once 1.0 is live. The rest of the work doesn't wait 
 
 ## Separate from this work
 
-Version 1.0 releases automatically once approved. Its legal texts are settled: privacy 1.3 and
-terms 1.2 were published on 5 November 2026 and describe build 8 as it is. What a lawyer should
-still look at is in `docs/legal/OPEN-QUESTIONS.md`, above all items 4 and 21.
+What a lawyer should still look at is in `docs/legal/OPEN-QUESTIONS.md`, above all items 4 and 21.
