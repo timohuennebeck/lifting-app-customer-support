@@ -475,10 +475,10 @@ node scripts/legal-migration.mjs 1.3 <date> <ts>_privacy_policy_v1_3_es_fr --kin
 ```
 
 ```bash
-node scripts/legal-migration.mjs 1.3 <date> <ts2>_terms_v1_3 --kind=terms de en pt-PT pt-BR ko es fr
+node scripts/legal-migration.mjs 1.3 '2026-11-05 12:00:00+00' <ts2>_terms_v1_3 --kind=terms de en pt-PT pt-BR ko es fr
 ```
 
-Expected: 2 privacy documents and 7 terms documents.
+Expected: 2 privacy documents and 7 terms documents. Terms 1.3 takes a time after live terms 1.2 (`2026-11-05 00:00:00+00`), because the app picks the newest `effective_at` with no tie-break and pushed rows can't change; published on a later day, that day's date is enough.
 
 - [ ] **Step 2: Dry-run, ask the owner, and push.** Expected: only these two listed.
 - [ ] **Step 3: Verify by hash.** `md5(content_md)` of the nine live rows equals the md5 of `file.strip() + '\n'`. The newest terms row is 1.3 in all seven locales, the newest privacy row is 1.3 in all seven, and `requires_reacceptance` is false.
