@@ -33,17 +33,17 @@
     "dismiss": "Fermer"
   },
   "inbox": {
-    "title": "Boîte de réception",
-    "openCount_one": "{{count}} ouverte",
-    "openCount_other": "{{count}} ouvertes",
-    "search": "Rechercher un nom, e-mail, ticket",
-    "empty": "Aucune demande dans cette vue.",
+    "title": "Réception",
+    "openCount_one": "{{count}} ouvert",
+    "openCount_other": "{{count}} ouverts",
+    "search": "Nom, e-mail ou ticket",
+    "empty": "Aucun ticket dans cette vue.",
     "loading": "Chargement…",
     "loadFailed": "La boîte de réception n'a pas pu être chargée.",
     "retry": "Réessayer",
-    "noTicket": "Choisis une demande à gauche.",
+    "noTicket": "Choisis un ticket à gauche.",
     "kinds": {
-      "all": "Toutes",
+      "all": "Tous",
       "bug": "Bugs",
       "idea": "Idées"
     },
@@ -58,8 +58,8 @@
     "closed": "Fermé"
   },
   "statusHint": {
-    "open": "Nouvelle ou en cours",
-    "closed": "Clos – l'utilisateur peut la rouvrir"
+    "open": "Nouveau ou en cours",
+    "closed": "Clos – l'utilisateur peut le rouvrir"
   },
   "kind": {
     "bug": "Bug",
@@ -73,10 +73,10 @@
   "thread": {
     "team": "Équipe Loqqa",
     "statusLine": "Statut : {{status}}",
-    "reopened": "{{name}} a rouvert la demande",
+    "reopened": "{{name}} a rouvert le ticket",
     "sending": "Envoi…",
     "screenshot": "Capture {{index}}",
-    "uploading": "Téléversement en cours",
+    "uploading": "Envoi en cours",
     "closeHint": "Clique ou appuie sur Échap pour fermer",
     "loadFailed": "La conversation n'a pas pu être chargée.",
     "translatedFrom": "Traduit de : {{language}}",
@@ -86,7 +86,7 @@
   },
   "composer": {
     "placeholder": "Répondre à {{name}}",
-    "placeholderTranslated": "Répondre à {{name}} · sera traduit en {{language}}",
+    "placeholderTranslated": "Répondre à {{name}} · traduction en {{language}}",
     "send": "Envoyer",
     "tooLong_one": "{{count}} caractère en trop",
     "tooLong_other": "{{count}} caractères en trop"
@@ -127,7 +127,7 @@
       "name": "Nom",
       "email": "E-mail",
       "device": "Appareil",
-      "requests": "Demandes",
+      "requests": "Tickets",
       "lastContact": "Dernier contact"
     },
     "empty": "Aucun client trouvé."

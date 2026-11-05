@@ -5,7 +5,7 @@
     "wordmark": "Loqqa"
   },
   "nav": {
-    "inbox": "Bandeja",
+    "inbox": "Bandeja de entrada",
     "customers": "Clientes"
   },
   "language": {
@@ -23,7 +23,7 @@
     "password": "Contraseña",
     "submit": "Iniciar sesión",
     "signingIn": "Iniciando sesión…",
-    "fillBoth": "Introduce tu correo y tu contraseña.",
+    "fillBoth": "Escribe tu correo y tu contraseña.",
     "invalid": "El correo o la contraseña no son correctos.",
     "denied": "Esta cuenta no tiene acceso al soporte.",
     "unreachable": "No se puede conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
@@ -34,16 +34,16 @@
   },
   "inbox": {
     "title": "Bandeja",
-    "openCount_one": "{{count}} abierta",
-    "openCount_other": "{{count}} abiertas",
+    "openCount_one": "{{count}} abierto",
+    "openCount_other": "{{count}} abiertos",
     "search": "Buscar nombre, correo, ticket",
-    "empty": "No hay solicitudes en esta vista.",
+    "empty": "No hay tickets en esta vista.",
     "loading": "Cargando…",
-    "loadFailed": "No se pudo cargar la bandeja.",
+    "loadFailed": "No se pudo cargar la bandeja de entrada.",
     "retry": "Reintentar",
-    "noTicket": "Elige una solicitud a la izquierda.",
+    "noTicket": "Elige un ticket a la izquierda.",
     "kinds": {
-      "all": "Todas",
+      "all": "Todos",
       "bug": "Errores",
       "idea": "Ideas"
     },
@@ -58,8 +58,8 @@
     "closed": "Cerrado"
   },
   "statusHint": {
-    "open": "Nueva o en curso",
-    "closed": "Resuelta – el usuario puede reabrirla"
+    "open": "Nuevo o en curso",
+    "closed": "Resuelto – el usuario puede reabrirlo"
   },
   "kind": {
     "bug": "Error",
@@ -73,7 +73,7 @@
   "thread": {
     "team": "Equipo de Loqqa",
     "statusLine": "Estado: {{status}}",
-    "reopened": "{{name}} reabrió la solicitud",
+    "reopened": "{{name}} reabrió el ticket",
     "sending": "Enviando…",
     "screenshot": "Captura {{index}}",
     "uploading": "Aún se está subiendo",
@@ -127,7 +127,7 @@
       "name": "Nombre",
       "email": "Correo",
       "device": "Dispositivo",
-      "requests": "Solicitudes",
+      "requests": "Tickets",
       "lastContact": "Último contacto"
     },
     "empty": "No se encontró ningún cliente."
